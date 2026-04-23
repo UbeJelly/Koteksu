@@ -1,4 +1,4 @@
-class_name MainClient extends Control
+class_name MainClient extends Panel
 
 
 onready var client: HBoxContainer = $"Margin/Rows/Client"
@@ -15,6 +15,7 @@ var address: String = ""
 var message: String = ""
 
 var message_field_focus: bool = false
+var color_picker_value: String = ""
 
 
 func _ready() -> void:
@@ -63,3 +64,51 @@ func _on_Join_pressed() -> void:
 func _on_Send_pressed() -> void:
 	if not message_field.text.empty():
 		rpc_unreliable("_message_rpc", username, message_field.text)
+
+
+func _on_Bold_pressed() -> void:
+	message_field.text += "[b][/b]"
+
+
+func _on_Italic_pressed() -> void:
+	message_field.text += "[i][/i]"
+
+
+func _on_Code_pressed() -> void:
+	message_field.text += "[code][/code]"
+
+
+func _on_Underline_pressed() -> void:
+	message_field.text += "[u][/u]"
+
+
+func _on_Strikethrough_pressed() -> void:
+	message_field.text += "[s][/s]"
+
+
+func _on_Color_color_changed(color) -> void:
+	color_picker_value = color.to_html(true)
+
+
+func _on_Color_popup_closed() -> void:
+	message_field.text += "[color=#%s][/color]" % color_picker_value
+
+
+func _on_Wave_pressed() -> void:
+	message_field.text += "[wave amp=50 freq=2][/wave]"
+
+
+func _on_Tornado_pressed() -> void:
+	message_field.text += "[tornado radius=5 freq=2][/tornado]"
+
+
+func _on_Shake_pressed() -> void:
+	message_field.text += "[shake rate=5 level=10][/shake]"
+
+
+func _on_Fade_pressed() -> void:
+	message_field.text += "[fade start=4 length=10][/fade]"
+
+
+func _on_Rainbow_pressed() -> void:
+	message_field.text += "[rainbow freq=1 sat=5 val=10][/rainbow]"
