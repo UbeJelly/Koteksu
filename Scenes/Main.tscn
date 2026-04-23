@@ -1,44 +1,18 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Italic.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-BoldItalic.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Scripts/Message.gd" type="Script" id=7]
-
-[sub_resource type="DynamicFont" id=6]
-size = 14
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 5 )
-
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.172549, 0.164706, 0.196078, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[ext_resource path="res://Resources/GDResources/Themes/Default.tres" type="Theme" id=8]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 8 )
 script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -58,34 +32,28 @@ custom_constants/separation = 40
 
 [node name="Chat" type="VBoxContainer" parent="Margin/Rows"]
 margin_right = 400.0
-margin_bottom = 376.0
+margin_bottom = 373.0
 size_flags_vertical = 3
 
 [node name="Chatbox" type="RichTextLabel" parent="Margin/Rows/Chat"]
 unique_name_in_owner = true
 margin_right = 400.0
-margin_bottom = 348.0
+margin_bottom = 336.0
 focus_mode = 2
 size_flags_vertical = 3
-custom_fonts/mono_font = SubResource( 6 )
-custom_fonts/bold_italics_font = SubResource( 5 )
-custom_fonts/italics_font = SubResource( 4 )
-custom_fonts/bold_font = SubResource( 3 )
-custom_fonts/normal_font = SubResource( 2 )
-custom_styles/normal = SubResource( 1 )
 bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 
 [node name="User" type="HBoxContainer" parent="Margin/Rows/Chat"]
-margin_top = 352.0
+margin_top = 346.0
 margin_right = 400.0
-margin_bottom = 376.0
+margin_bottom = 373.0
 
 [node name="Message" type="LineEdit" parent="Margin/Rows/Chat/User"]
 unique_name_in_owner = true
-margin_right = 353.0
-margin_bottom = 24.0
+margin_right = 326.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 placeholder_text = "Message"
 caret_blink = true
@@ -93,47 +61,53 @@ script = ExtResource( 7 )
 
 [node name="Send" type="Button" parent="Margin/Rows/Chat/User"]
 unique_name_in_owner = true
-margin_left = 357.0
+margin_left = 336.0
 margin_right = 400.0
-margin_bottom = 24.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 64, 0 )
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 0
 text = "Send"
 
 [node name="Client" type="HBoxContainer" parent="Margin/Rows"]
 unique_name_in_owner = true
-margin_top = 416.0
+margin_top = 413.0
 margin_right = 400.0
 margin_bottom = 440.0
 
 [node name="Username" type="LineEdit" parent="Margin/Rows/Client"]
 unique_name_in_owner = true
-margin_right = 155.0
-margin_bottom = 24.0
+margin_right = 121.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 placeholder_text = "Username"
 caret_blink = true
 
 [node name="Address" type="LineEdit" parent="Margin/Rows/Client"]
 unique_name_in_owner = true
-margin_left = 159.0
-margin_right = 315.0
-margin_bottom = 24.0
+margin_left = 131.0
+margin_right = 252.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 placeholder_text = "Address"
 caret_blink = true
 
 [node name="Host" type="Button" parent="Margin/Rows/Client"]
 unique_name_in_owner = true
-margin_left = 319.0
-margin_right = 361.0
-margin_bottom = 24.0
+margin_left = 262.0
+margin_right = 326.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 64, 0 )
+mouse_default_cursor_shape = 2
 text = "Host"
 
 [node name="Join" type="Button" parent="Margin/Rows/Client"]
 unique_name_in_owner = true
-margin_left = 365.0
+margin_left = 336.0
 margin_right = 400.0
-margin_bottom = 24.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 64, 0 )
+mouse_default_cursor_shape = 2
 text = "Join"
 
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]

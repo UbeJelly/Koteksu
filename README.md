@@ -12,10 +12,14 @@ I wonder what a random chatbox Konata would make on her free time? Mayhaps this 
 ## Features
 - BBCode styles: https://docs.godotengine.org/en/3.6/tutorials/ui/bbcode_in_richtextlabel.html
 - Responsive UI
+- Custom themes (see [Theme](#theme))
 
-## TO-DO
-- GIF API
-- Theme
+![theme_preview.gif](theme_preview.gif)
+
+## Theme
+The Main node now uses the `Default.tres` Theme Resource by default. It is then used by its children nodes.
+
+![theme_resource_preview.png](theme_resource_preview.png)
 
 ## Usage
 1. To test, export a build first.
@@ -23,6 +27,10 @@ I wonder what a random chatbox Konata would make on her free time? Mayhaps this 
 3. Input a username and local address for the host, then press `Host` button.
 4. Once the host is done, input the same address but choose `Join` this time.
 5. Enjoy testing!
+
+## TO-DO
+- [ ] GIF API
+- [x] Theme
 
 ## Credits
 - Konata Izumi edit, Pin: https://www.pinterest.com/pin/konata-and-co--9288742975346064/
