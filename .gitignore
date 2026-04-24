@@ -1,6 +1,8 @@
+.godot/
 .import/
 Builds/
 export_presets.cfg
 export_credentials.cfg
 *.tmp
 *.import
+*.gd.uid

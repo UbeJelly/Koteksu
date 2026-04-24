@@ -1,14 +1,14 @@
 class_name MainClient extends Panel
 
 
-onready var client: HBoxContainer = $"Margin/Rows/Client"
-onready var host: Button = $"Margin/Rows/Client/Host"
-onready var join: Button = $"Margin/Rows/Client/Join"
-onready var send: Button = $"Margin/Rows/Chat/User/Send"
-onready var username_field: LineEdit = $"Margin/Rows/Client/Username"
-onready var address_field: LineEdit = $"Margin/Rows/Client/Address"
-onready var message_field: LineEdit = $"Margin/Rows/Chat/User/Message"
-onready var chatbox: RichTextLabel = $"Margin/Rows/Chat/Chatbox"
+@onready var client: HBoxContainer = $"Margin/Rows/Client"
+@onready var host: Button = $"Margin/Rows/Client/Host"
+@onready var join: Button = $"Margin/Rows/Client/Join"
+@onready var send: Button = $"Margin/Rows/Chat/User/Send"
+@onready var username_field: LineEdit = $"Margin/Rows/Client/Username"
+@onready var address_field: LineEdit = $"Margin/Rows/Client/Address"
+@onready var message_field: LineEdit = $"Margin/Rows/Chat/User/Message"
+@onready var chatbox: RichTextLabel = $"Margin/Rows/Chat/Chatbox"
 
 var username: String = ""
 var address: String = ""
@@ -18,19 +18,19 @@ var message_field_focus: bool = false
 var color_picker_value: String = ""
 
 var has_selected_text: bool = false
-var selected_text: String = "" setget set_selected_text, get_selected_text
+var selected_text: String = "": get = get_selected_text, set = set_selected_text
 
 
 func _ready() -> void:
-	get_tree().connect("connected_to_server", self, "_on_connected")
-	get_tree().connect("network_peer_connected", self, "_on_peer_connected")
+	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
+	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
 
 func _joined() -> void:
 	client.hide()
 	username = username_field.text
 	address = address_field.text
-	rpc_unreliable_id(get_tree().get_network_unique_id(), "_notify", username)
+	_notify.rpc_id(multiplayer.get_unique_id(), username)
 
 
 func _on_connected() -> void:
@@ -38,35 +38,38 @@ func _on_connected() -> void:
 
 
 func _on_peer_connected(id: int) -> void:
-	rpc_unreliable_id(id, "_notify", username)
+	_notify.rpc_id(id, username)
 
 
-remotesync func _message_rpc(_username: String = "", _text: String = "") -> void:
-	chatbox.bbcode_text += "\n[b]%s:[/b] %s" % [_username, _text]
-	message_field.text = ""
+@rpc("any_peer", "call_local", "unreliable") func _message_rpc(_username: String = "", _text: String = "") -> void:
+	chatbox.text += "\n[b]%s:[/b] %s" % [_username, _text]
 
 
-remotesync func _notify(_username: String = "") -> void:
-	chatbox.bbcode_text += "\n[color=gray]%s joined the chat[/color]" % _username
+@rpc("any_peer", "call_local", "unreliable") func _notify(_username: String = "") -> void:
+	chatbox.text += "\n[color=gray]%s joined the chat[/color]" % _username
 
 
 func _on_Host_pressed() -> void:
-	var peer: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
+	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	peer.create_server(1029, 2)
-	get_tree().set_network_peer(peer)
+	multiplayer.set_multiplayer_peer(peer)
 	_joined()
 
 
 func _on_Join_pressed() -> void:
-	var peer: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
+	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	peer.create_client(address_field.text, 1029)
-	get_tree().set_network_peer(peer)
+	multiplayer.set_multiplayer_peer(peer)
 	_joined()
 
 
 func _on_Send_pressed() -> void:
-	if not message_field.text.empty():
-		rpc_unreliable("_message_rpc", username, message_field.text)
+	if not message_field.text.is_empty():
+		if "[code]" in message_field.text:
+			message_field.text = message_field.text.replace("[code]", "[bgcolor=#c8c8c8][code]")
+			message_field.text = message_field.text.replace("[/code]", "[/code][/bgcolor]")
+	_message_rpc.rpc(username, message_field.text)
+	message_field.text = ""
 
 
 func _bbcode_formatter(bbcoded_string: String = "") -> String:
@@ -132,7 +135,7 @@ func _on_Color_color_changed(color) -> void:
 
 func _on_Color_popup_closed() -> void:
 	if has_selected_text == true:
-		if not get_selected_text().empty():
+		if not get_selected_text().is_empty():
 			message_field.text = _bbcode_formatter("[color=#%s]%s[/color]" % [color_picker_value, get_selected_text()])
 			has_selected_text = false
 			selected_text = ""
@@ -178,8 +181,8 @@ func _on_Fade_pressed() -> void:
 
 func _on_Rainbow_pressed() -> void:
 	if has_selected_text == true:
-		message_field.text = _bbcode_formatter("[rainbow freq=1 sat=5 val=10]%s[/rainbow]" % get_selected_text())
+		message_field.text = _bbcode_formatter("[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]%s[/rainbow]" % get_selected_text())
 		has_selected_text = false
 		selected_text = ""
 	else:
-		message_field.text += "[rainbow freq=1 sat=5 val=10][/rainbow]"
+		message_field.text += "[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0][/rainbow]"

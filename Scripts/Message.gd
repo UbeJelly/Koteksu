@@ -1,15 +1,16 @@
 extends LineEdit
 
 
-onready var main: Control = $"../../../../.."
+@onready var main: Control = $"../../../../.."
 
 
 func _input(event) -> void:
 	if event.is_action_pressed("Enter"):
-		main.rpc_unreliable("_message_rpc", main.username, main.message_field.text)
+		main._message_rpc.rpc(main.username, main.message_field.text)
+		main.message_field.text = ""
 
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.is_released():
+		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 			if has_selection():
 				main.has_selected_text = true
 

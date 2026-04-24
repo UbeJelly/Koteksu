@@ -1,349 +1,306 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene format=3 uid="uid://cnrqb8xbljcih"]
 
-[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Resources/Font/Ubuntu/Ubuntu-Italic.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Resources/Textures/Icon/fill_color_24.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Scripts/Message.gd" type="Script" id=7]
-[ext_resource path="res://Resources/GDResources/Themes/Default.tres" type="Theme" id=8]
+[ext_resource type="Script" uid="uid://q547xhmgyo8k" path="res://Scripts/Main.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://bba6aa1q503sk" path="res://Resources/Font/Ubuntu/Ubuntu-Regular.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://bceeigicgw1ej" path="res://Resources/Font/Ubuntu/Ubuntu-Bold.ttf" id="3"]
+[ext_resource type="FontFile" uid="uid://ht6u8dbd72qf" path="res://Resources/Font/Ubuntu/Ubuntu-Italic.ttf" id="4"]
+[ext_resource type="Texture2D" uid="uid://dm3ysy2hpe7ti" path="res://Resources/Textures/Icon/fill_color_24.png" id="5"]
+[ext_resource type="FontFile" uid="uid://imva135cpqd7" path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" id="6"]
+[ext_resource type="Script" uid="uid://dkqu26eksdht4" path="res://Scripts/Message.gd" id="7"]
+[ext_resource type="Theme" uid="uid://b4g8jr74l3m7s" path="res://Resources/GDResources/Themes/Default.tres" id="8"]
 
-[sub_resource type="DynamicFont" id=1]
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
+[sub_resource type="FontVariation" id="FontVariation_50glp"]
+base_font = ExtResource("3")
 
-[sub_resource type="DynamicFont" id=2]
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
+[sub_resource type="FontVariation" id="FontVariation_vy5pj"]
+base_font = ExtResource("4")
 
-[sub_resource type="DynamicFont" id=3]
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 6 )
+[sub_resource type="FontVariation" id="FontVariation_bmxlf"]
+base_font = ExtResource("6")
 
-[sub_resource type="DynamicFont" id=4]
-use_mipmaps = true
-use_filter = true
-extra_spacing_top = -8
-extra_spacing_bottom = -10
-font_data = ExtResource( 2 )
+[sub_resource type="FontVariation" id="FontVariation_4kpch"]
+base_font = ExtResource("2")
 
-[sub_resource type="DynamicFont" id=5]
-use_mipmaps = true
-use_filter = true
-extra_spacing_top = -10
-extra_spacing_bottom = -10
-font_data = ExtResource( 2 )
+[sub_resource type="FontVariation" id="FontVariation_grg3l"]
+base_font = ExtResource("2")
+spacing_glyph = -12
+spacing_space = -1
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id="6"]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id="7"]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id="8"]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id="9"]
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id="10"]
 
-[node name="Main" type="Panel"]
+[node name="Main" type="Panel" unique_id=1889466723]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 8 )
-script = ExtResource( 1 )
+theme = ExtResource("8")
+script = ExtResource("1")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1916566274]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
 
-[node name="Rows" type="VBoxContainer" parent="Margin"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 620.0
-margin_bottom = 460.0
-custom_constants/separation = 40
+[node name="Rows" type="VBoxContainer" parent="Margin" unique_id=161758328]
+layout_mode = 2
+theme_override_constants/separation = 40
 
-[node name="Chat" type="VBoxContainer" parent="Margin/Rows"]
-margin_right = 600.0
-margin_bottom = 373.0
+[node name="Chat" type="VBoxContainer" parent="Margin/Rows" unique_id=467018143]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Chatbox" type="RichTextLabel" parent="Margin/Rows/Chat"]
+[node name="Chatbox" type="RichTextLabel" parent="Margin/Rows/Chat" unique_id=304084154]
 unique_name_in_owner = true
-margin_right = 600.0
-margin_bottom = 299.0
-focus_mode = 2
+layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 
-[node name="User" type="HBoxContainer" parent="Margin/Rows/Chat"]
-margin_top = 309.0
-margin_right = 600.0
-margin_bottom = 336.0
+[node name="User" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=579338248]
+layout_mode = 2
 
-[node name="Message" type="LineEdit" parent="Margin/Rows/Chat/User"]
+[node name="Message" type="LineEdit" parent="Margin/Rows/Chat/User" unique_id=1880207656]
 unique_name_in_owner = true
-margin_right = 526.0
-margin_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Message"
 caret_blink = true
-caret_blink_speed = 0.5
-script = ExtResource( 7 )
+caret_blink_interval = 0.5
+script = ExtResource("7")
 
-[node name="Send" type="Button" parent="Margin/Rows/Chat/User"]
+[node name="Send" type="Button" parent="Margin/Rows/Chat/User" unique_id=921866936]
 unique_name_in_owner = true
-margin_left = 536.0
-margin_right = 600.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
-mouse_default_cursor_shape = 2
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
 text = "Send"
 
-[node name="Style" type="HBoxContainer" parent="Margin/Rows/Chat"]
-margin_top = 346.0
-margin_right = 600.0
-margin_bottom = 373.0
+[node name="Style" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=1907818460]
+layout_mode = 2
 
-[node name="Bold" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_right = 32.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Bold" type="Button" parent="Margin/Rows/Chat/Style" unique_id=998798223]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 1 )
+theme_override_fonts/font = SubResource("FontVariation_50glp")
 text = "B"
 
-[node name="Italic" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 42.0
-margin_right = 74.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Italic" type="Button" parent="Margin/Rows/Chat/Style" unique_id=18735423]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource("FontVariation_vy5pj")
 text = "I"
 
-[node name="Code" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 84.0
-margin_right = 116.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Code" type="Button" parent="Margin/Rows/Chat/Style" unique_id=639207210]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("FontVariation_bmxlf")
 text = "<>"
 
-[node name="Underline" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 126.0
-margin_right = 158.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Underline" type="Button" parent="Margin/Rows/Chat/Style" unique_id=696730872]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 4 )
-text = "U
-_"
+theme_override_fonts/font = SubResource("FontVariation_4kpch")
+text = "U̲"
 
-[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 168.0
-margin_right = 200.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/Style" unique_id=1288884257]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-custom_fonts/font = SubResource( 5 )
-text = "S
-—"
+theme_override_fonts/font = SubResource("FontVariation_grg3l")
+text = " S—"
 
-[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/Style"]
-margin_left = 210.0
-margin_right = 242.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/Style" unique_id=1536334709]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-icon_align = 1
+icon_alignment = 1
 expand_icon = true
 
-[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Style/Color"]
-margin_left = 4.0
-margin_top = 1.0
-margin_right = 28.0
-margin_bottom = 25.0
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Style/Color" unique_id=88329653]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 25.0
 mouse_filter = 2
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+texture = ExtResource("5")
 
-[node name="Wave" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 252.0
-margin_right = 316.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
+[node name="Wave" type="Button" parent="Margin/Rows/Chat/Style" unique_id=744095729]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Wave"]
-margin_left = 12.0
-margin_top = 2.0
-margin_right = 52.0
-margin_bottom = 42.0
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Wave" unique_id=1690226577]
+clip_contents = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 52.0
+offset_bottom = 25.0
 mouse_filter = 2
-custom_styles/normal = SubResource( 6 )
+theme_override_styles/normal = SubResource("6")
 bbcode_enabled = true
-bbcode_text = "[wave amp=50 freq=2]wave[/wave]"
-meta_underlined = false
-text = "wave"
+text = "[wave amp=50 freq=2]wave[/wave]"
 scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
 deselect_on_focus_loss_enabled = false
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Tornado" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 326.0
-margin_right = 406.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 80, 0 )
+[node name="Tornado" type="Button" parent="Margin/Rows/Chat/Style" unique_id=126337946]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Tornado"]
-margin_left = 10.0
-margin_top = 2.0
-margin_right = 90.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 80, 0 )
-rect_clip_content = false
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Tornado" unique_id=1942064563]
+clip_contents = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 2.0
+offset_right = 74.0
+offset_bottom = 25.0
 mouse_filter = 2
-custom_styles/normal = SubResource( 7 )
+theme_override_styles/normal = SubResource("7")
 bbcode_enabled = true
-bbcode_text = "[tornado radius=5 freq=2]tornado[/tornado]"
-meta_underlined = false
-text = "tornado"
+text = "[tornado radius=5 freq=2]tornado[/tornado]"
 scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
 deselect_on_focus_loss_enabled = false
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Shake" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 416.0
-margin_right = 480.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
+[node name="Shake" type="Button" parent="Margin/Rows/Chat/Style" unique_id=757035048]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Shake"]
-margin_left = 12.0
-margin_top = 3.0
-margin_right = 76.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 64, 0 )
-rect_clip_content = false
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Shake" unique_id=1218136499]
+clip_contents = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 23.0
 mouse_filter = 2
-custom_styles/normal = SubResource( 8 )
+theme_override_styles/normal = SubResource("8")
 bbcode_enabled = true
-bbcode_text = "[shake rate=5 level=10]shake[/shake]"
-meta_underlined = false
-text = "shake"
+text = "[shake rate=5 level=10]shake[/shake]"
 scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
 deselect_on_focus_loss_enabled = false
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Fade" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 490.0
-margin_right = 554.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
+[node name="Fade" type="Button" parent="Margin/Rows/Chat/Style" unique_id=969116880]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Fade"]
-margin_left = 14.0
-margin_top = 4.0
-margin_right = 78.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 64, 0 )
-rect_clip_content = false
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Fade" unique_id=1049306529]
+clip_contents = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 49.0
+offset_bottom = 23.0
 mouse_filter = 2
-custom_styles/normal = SubResource( 9 )
+theme_override_styles/normal = SubResource("9")
 bbcode_enabled = true
-bbcode_text = "[fade start=0 length=4]fade[/fade]"
-meta_underlined = false
-text = "fade"
+text = "[fade start=0 length=4]fade[/fade]"
 scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
 deselect_on_focus_loss_enabled = false
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/Style"]
-margin_left = 564.0
-margin_right = 600.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 36, 0 )
+[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/Style" unique_id=1302304183]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Rainbow"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 48.0
-margin_bottom = 44.0
-rect_clip_content = false
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Rainbow" unique_id=458524478]
+clip_contents = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 22.0
 mouse_filter = 2
-custom_styles/normal = SubResource( 10 )
+theme_override_styles/normal = SubResource("10")
 bbcode_enabled = true
-bbcode_text = "[rainbow freq=1 sat=5 val=10]<3[/rainbow]"
-meta_underlined = false
-text = "<3"
+text = "[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]<3[/rainbow]"
 scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
 deselect_on_focus_loss_enabled = false
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Client" type="HBoxContainer" parent="Margin/Rows"]
+[node name="Client" type="HBoxContainer" parent="Margin/Rows" unique_id=12301996]
 unique_name_in_owner = true
-margin_top = 413.0
-margin_right = 600.0
-margin_bottom = 440.0
+layout_mode = 2
 
-[node name="Username" type="LineEdit" parent="Margin/Rows/Client"]
+[node name="Username" type="LineEdit" parent="Margin/Rows/Client" unique_id=424941915]
 unique_name_in_owner = true
-margin_right = 221.0
-margin_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Username"
 caret_blink = true
-caret_blink_speed = 0.5
+caret_blink_interval = 0.5
 
-[node name="Address" type="LineEdit" parent="Margin/Rows/Client"]
+[node name="Address" type="LineEdit" parent="Margin/Rows/Client" unique_id=1329603769]
 unique_name_in_owner = true
-margin_left = 231.0
-margin_right = 452.0
-margin_bottom = 27.0
+layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Address"
 caret_blink = true
-caret_blink_speed = 0.5
+caret_blink_interval = 0.5
 
-[node name="Host" type="Button" parent="Margin/Rows/Client"]
+[node name="Host" type="Button" parent="Margin/Rows/Client" unique_id=1516951879]
 unique_name_in_owner = true
-margin_left = 462.0
-margin_right = 526.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Host"
 
-[node name="Join" type="Button" parent="Margin/Rows/Client"]
+[node name="Join" type="Button" parent="Margin/Rows/Client" unique_id=504368545]
 unique_name_in_owner = true
-margin_left = 536.0
-margin_right = 600.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 64, 0 )
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Join"
 
