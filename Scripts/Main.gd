@@ -17,6 +17,9 @@ var message: String = ""
 var message_field_focus: bool = false
 var color_picker_value: String = ""
 
+var has_selected_text: bool = false
+var selected_text: String = "" setget set_selected_text, get_selected_text
+
 
 func _ready() -> void:
 	get_tree().connect("connected_to_server", self, "_on_connected")
@@ -66,24 +69,61 @@ func _on_Send_pressed() -> void:
 		rpc_unreliable("_message_rpc", username, message_field.text)
 
 
+func _bbcode_formatter(bbcoded_string: String = "") -> String:
+	return message_field.text.replace(get_selected_text(), bbcoded_string)
+
+
+func set_selected_text(text: String = "") -> void:
+	selected_text = text
+
+
+func get_selected_text() -> String:
+	return selected_text
+
+
 func _on_Bold_pressed() -> void:
-	message_field.text += "[b][/b]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[b]%s[/b]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[b][/b]"
 
 
 func _on_Italic_pressed() -> void:
-	message_field.text += "[i][/i]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[i]%s[/i]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[i][/i]"
 
 
 func _on_Code_pressed() -> void:
-	message_field.text += "[code][/code]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[code]%s[/code]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[code][/code]"
 
 
 func _on_Underline_pressed() -> void:
-	message_field.text += "[u][/u]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[u]%s[/u]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[u][/u]"
 
 
 func _on_Strikethrough_pressed() -> void:
-	message_field.text += "[s][/s]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[s]%s[/s]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[s][/s]"
 
 
 func _on_Color_color_changed(color) -> void:
@@ -91,24 +131,55 @@ func _on_Color_color_changed(color) -> void:
 
 
 func _on_Color_popup_closed() -> void:
-	message_field.text += "[color=#%s][/color]" % color_picker_value
+	if has_selected_text == true:
+		if not get_selected_text().empty():
+			message_field.text = _bbcode_formatter("[color=#%s]%s[/color]" % [color_picker_value, get_selected_text()])
+			has_selected_text = false
+			selected_text = ""
+	else:
+		message_field.text += "[color=#%s][/color]" % color_picker_value
 
 
 func _on_Wave_pressed() -> void:
-	message_field.text += "[wave amp=50 freq=2][/wave]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[wave amp=50 freq=2]%s[/wave]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[wave amp=50 freq=2][/wave]"
 
 
 func _on_Tornado_pressed() -> void:
-	message_field.text += "[tornado radius=5 freq=2][/tornado]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[tornado radius=5 freq=2]%s[/tornado]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[tornado radius=5 freq=2][/tornado]"
 
 
 func _on_Shake_pressed() -> void:
-	message_field.text += "[shake rate=5 level=10][/shake]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[shake rate=5 level=10]%s[/shake]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[shake rate=5 level=10][/shake]"
 
 
 func _on_Fade_pressed() -> void:
-	message_field.text += "[fade start=4 length=10][/fade]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[fade start=4 length=10]%s[/fade]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[fade start=4 length=10][/fade]"
 
 
 func _on_Rainbow_pressed() -> void:
-	message_field.text += "[rainbow freq=1 sat=5 val=10][/rainbow]"
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[rainbow freq=1 sat=5 val=10]%s[/rainbow]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[rainbow freq=1 sat=5 val=10][/rainbow]"
