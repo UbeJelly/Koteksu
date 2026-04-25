@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://dkqu26eksdht4" path="res://Scripts/Message.gd" id="7"]
 [ext_resource type="Theme" uid="uid://b4g8jr74l3m7s" path="res://Resources/GDResources/Themes/Default.tres" id="8"]
 [ext_resource type="Texture2D" uid="uid://iqcywcwxauw6" path="res://Resources/Textures/Icon/link_24.png" id="9_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://jjea3pcwyevl" path="res://Resources/Textures/Icon/image_24.png" id="10_bmxlf"]
+[ext_resource type="Texture2D" uid="uid://botespg6luk6" path="res://Resources/Textures/Icon/konata_mlg.png" id="11_4kpch"]
+[ext_resource type="Script" uid="uid://cb4i4t5sx43c3" path="res://Scripts/Grid.gd" id="11_grg3l"]
 
 [sub_resource type="FontVariation" id="FontVariation_50glp"]
 base_font = ExtResource("3")
@@ -328,6 +331,22 @@ threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
+[node name="Image" type="Button" parent="Margin/Rows/Chat/Objects" unique_id=1243027767]
+custom_minimum_size = Vector2(32, 27)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("FontVariation_50glp")
+
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Objects/Image" unique_id=1577297088]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 25.0
+mouse_filter = 2
+texture = ExtResource("10_bmxlf")
+metadata/_edit_lock_ = true
+
 [node name="Client" type="HBoxContainer" parent="Margin/Rows" unique_id=12301996]
 unique_name_in_owner = true
 layout_mode = 2
@@ -362,6 +381,153 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Join"
 
+[node name="ImgBoard" type="PopupPanel" parent="." unique_id=1151186792]
+unique_name_in_owner = true
+disable_3d = true
+physics_object_picking = true
+oversampling_override = 1.0
+title = "Images"
+position = Vector2i(0, 36)
+size = Vector2i(340, 488)
+wrap_controls = false
+unresizable = false
+borderless = false
+
+[node name="Scroll" type="ScrollContainer" parent="ImgBoard" unique_id=1636155070]
+custom_minimum_size = Vector2(320, 480)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 336.0
+offset_bottom = 484.0
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="ImgBoard/Scroll" unique_id=388634186]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 480)
+layout_mode = 2
+columns = 2
+script = ExtResource("11_grg3l")
+
+[node name="Sample0" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=14242968]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample1" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=898340509]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample2" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1393920493]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample3" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1571966390]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample4" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=923507910]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample5" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=822449339]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample6" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1196940154]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample7" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1653307004]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample8" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=554648506]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample9" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=951561177]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample10" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1293788573]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample11" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=84833800]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample12" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=2111586086]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample13" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1303955434]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Sample14" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1920596064]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_4kpch")
+ignore_texture_size = true
+stretch_mode = 6
+
 [connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Styles/Bold" to="." method="_on_Bold_pressed"]
@@ -378,5 +544,7 @@ text = "Join"
 [connection signal="pressed" from="Margin/Rows/Chat/Styles/Rainbow" to="." method="_on_Rainbow_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Objects/URL" to="." method="_on_URL_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Objects/Pulse" to="." method="_on_Pulse_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Objects/Image" to="." method="_on_Image_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Join" to="." method="_on_Join_pressed"]
+[connection signal="size_changed" from="ImgBoard" to="ImgBoard/Scroll/Grid" method="_on_ImgBoard_size_changed"]

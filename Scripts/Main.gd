@@ -1,14 +1,18 @@
 class_name MainClient extends Panel
 
+@onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
+@onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
 
-@onready var client: HBoxContainer = $"Margin/Rows/Client"
-@onready var host: Button = $"Margin/Rows/Client/Host"
-@onready var join: Button = $"Margin/Rows/Client/Join"
-@onready var send: Button = $"Margin/Rows/Chat/User/Send"
-@onready var username_field: LineEdit = $"Margin/Rows/Client/Username"
-@onready var address_field: LineEdit = $"Margin/Rows/Client/Address"
-@onready var message_field: LineEdit = $"Margin/Rows/Chat/User/Message"
-@onready var chatbox: RichTextLabel = $"Margin/Rows/Chat/Chatbox"
+@onready var client: RichTextLabel = %Chatbox
+@onready var host: Button = %Host
+@onready var join: Button = %Join
+@onready var send: Button = %Send
+@onready var username_field: LineEdit = %Username
+@onready var address_field: LineEdit = %Address
+@onready var message_field: LineEdit = %Message
+@onready var chatbox: RichTextLabel = %Chatbox
+@onready var imgboard: PopupPanel = %ImgBoard
+@onready var imggrid: GridContainer = %Grid
 
 var username: String = ""
 var address: String = ""
@@ -20,8 +24,24 @@ var color_picker_value: String = ""
 var has_selected_text: bool = false
 var selected_text: String = "": get = get_selected_text, set = set_selected_text
 
+var img_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu/img"
+var images: Array = []
+var imgboard_resizing: bool = false
+
+var scroll_v_size: int = 20
+
+
+func _init_directory(path: String = "") -> void:
+	if not DirAccess.dir_exists_absolute(path):
+		DirAccess.make_dir_absolute(path)
+
+
+func check_images(path: String = "") -> void:
+	DirAccess.open(path)
+
 
 func _ready() -> void:
+	_init_directory(img_path)
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
@@ -200,6 +220,10 @@ func _on_URL_pressed() -> void:
 		message_field.text += "[url][/url]"
 
 
+func _on_Chatbox_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)
+
+
 func _on_Pulse_pressed() -> void:
 	if has_selected_text == true:
 		message_field.text = _bbcode_formatter("[pulse freq=1.0 color=#ffffff40 ease=-2.0]%s[/pulse]" % get_selected_text())
@@ -209,5 +233,7 @@ func _on_Pulse_pressed() -> void:
 		message_field.text += "[pulse freq=1.0 color=#ffffff40 ease=-2.0][/pulse]"
 
 
-func _on_Chatbox_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(meta)
+func _on_Image_pressed() -> void:
+	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
+	window_size = DisplayServer.window_get_size(get_window().get_window_id())
+	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
