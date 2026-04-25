@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://imva135cpqd7" path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" id="6"]
 [ext_resource type="Script" uid="uid://dkqu26eksdht4" path="res://Scripts/Message.gd" id="7"]
 [ext_resource type="Theme" uid="uid://b4g8jr74l3m7s" path="res://Resources/GDResources/Themes/Default.tres" id="8"]
+[ext_resource type="Texture2D" uid="uid://iqcywcwxauw6" path="res://Resources/Textures/Icon/link_24.png" id="9_vy5pj"]
 
 [sub_resource type="FontVariation" id="FontVariation_50glp"]
 base_font = ExtResource("3")
@@ -34,6 +35,10 @@ spacing_space = -1
 
 [sub_resource type="StyleBoxEmpty" id="9"]
 
+[sub_resource type="FontVariation" id="FontVariation_frkhe"]
+spacing_glyph = -14
+spacing_top = -4
+
 [sub_resource type="StyleBoxEmpty" id="10"]
 
 [node name="Main" type="Panel" unique_id=1889466723]
@@ -51,7 +56,6 @@ size_flags_vertical = 3
 
 [node name="Rows" type="VBoxContainer" parent="Margin" unique_id=161758328]
 layout_mode = 2
-theme_override_constants/separation = 40
 
 [node name="Chat" type="VBoxContainer" parent="Margin/Rows" unique_id=467018143]
 layout_mode = 2
@@ -64,6 +68,7 @@ size_flags_vertical = 3
 focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
+threaded = true
 selection_enabled = true
 
 [node name="User" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=579338248]
@@ -86,52 +91,52 @@ size_flags_horizontal = 0
 mouse_default_cursor_shape = 2
 text = "Send"
 
-[node name="Style" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=1907818460]
+[node name="Styles" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=1907818460]
 layout_mode = 2
 
-[node name="Bold" type="Button" parent="Margin/Rows/Chat/Style" unique_id=998798223]
+[node name="Bold" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=998798223]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_50glp")
 text = "B"
 
-[node name="Italic" type="Button" parent="Margin/Rows/Chat/Style" unique_id=18735423]
+[node name="Italic" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=18735423]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_vy5pj")
 text = "I"
 
-[node name="Code" type="Button" parent="Margin/Rows/Chat/Style" unique_id=639207210]
+[node name="Code" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=639207210]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_bmxlf")
 text = "<>"
 
-[node name="Underline" type="Button" parent="Margin/Rows/Chat/Style" unique_id=696730872]
+[node name="Underline" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=696730872]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_4kpch")
 text = "U̲"
 
-[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/Style" unique_id=1288884257]
+[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=1288884257]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_grg3l")
 text = " S—"
 
-[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/Style" unique_id=1536334709]
+[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/Styles" unique_id=1536334709]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Style/Color" unique_id=88329653]
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Styles/Color" unique_id=88329653]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
@@ -139,13 +144,14 @@ offset_right = 28.0
 offset_bottom = 25.0
 mouse_filter = 2
 texture = ExtResource("5")
+metadata/_edit_lock_ = true
 
-[node name="Wave" type="Button" parent="Margin/Rows/Chat/Style" unique_id=744095729]
+[node name="Wave" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=744095729]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Wave" unique_id=1690226577]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Styles/Wave" unique_id=1690226577]
 clip_contents = false
 layout_mode = 0
 offset_left = 12.0
@@ -165,13 +171,14 @@ meta_underlined = false
 hint_underlined = false
 threaded = true
 deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
 
-[node name="Tornado" type="Button" parent="Margin/Rows/Chat/Style" unique_id=126337946]
+[node name="Tornado" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=126337946]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Tornado" unique_id=1942064563]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Styles/Tornado" unique_id=1942064563]
 clip_contents = false
 layout_mode = 0
 offset_left = 10.0
@@ -191,13 +198,14 @@ meta_underlined = false
 hint_underlined = false
 threaded = true
 deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
 
-[node name="Shake" type="Button" parent="Margin/Rows/Chat/Style" unique_id=757035048]
+[node name="Shake" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=757035048]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Shake" unique_id=1218136499]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Styles/Shake" unique_id=1218136499]
 clip_contents = false
 layout_mode = 0
 offset_left = 12.0
@@ -217,13 +225,14 @@ meta_underlined = false
 hint_underlined = false
 threaded = true
 deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
 
-[node name="Fade" type="Button" parent="Margin/Rows/Chat/Style" unique_id=969116880]
+[node name="Fade" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=969116880]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Fade" unique_id=1049306529]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Styles/Fade" unique_id=1049306529]
 clip_contents = false
 layout_mode = 0
 offset_left = 14.0
@@ -243,13 +252,14 @@ meta_underlined = false
 hint_underlined = false
 threaded = true
 deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
 
-[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/Style" unique_id=1302304183]
+[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=1302304183]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Style/Rainbow" unique_id=458524478]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Styles/Rainbow" unique_id=458524478]
 clip_contents = false
 layout_mode = 0
 offset_left = 8.0
@@ -257,9 +267,10 @@ offset_top = 4.0
 offset_right = 28.0
 offset_bottom = 22.0
 mouse_filter = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_frkhe")
 theme_override_styles/normal = SubResource("10")
 bbcode_enabled = true
-text = "[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]<3[/rainbow]"
+text = "[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]ㅤ♥︎[/rainbow]"
 scroll_active = false
 autowrap_mode = 0
 autowrap_trim_flags = 0
@@ -269,6 +280,53 @@ meta_underlined = false
 hint_underlined = false
 threaded = true
 deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="HBoxContainer" parent="Margin/Rows/Chat" unique_id=386153234]
+layout_mode = 2
+
+[node name="URL" type="Button" parent="Margin/Rows/Chat/Objects" unique_id=892133317]
+custom_minimum_size = Vector2(32, 27)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("FontVariation_50glp")
+
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Objects/URL" unique_id=1166182262]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 25.0
+mouse_filter = 2
+texture = ExtResource("9_vy5pj")
+metadata/_edit_lock_ = true
+
+[node name="Pulse" type="Button" parent="Margin/Rows/Chat/Objects" unique_id=609558429]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Objects/Pulse" unique_id=215660809]
+clip_contents = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 52.0
+offset_bottom = 25.0
+mouse_filter = 2
+theme_override_styles/normal = SubResource("6")
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]pulse[/pulse]"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+meta_underlined = false
+hint_underlined = false
+threaded = true
+deselect_on_focus_loss_enabled = false
+metadata/_edit_lock_ = true
 
 [node name="Client" type="HBoxContainer" parent="Margin/Rows" unique_id=12301996]
 unique_name_in_owner = true
@@ -304,18 +362,21 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Join"
 
+[connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Bold" to="." method="_on_Bold_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Italic" to="." method="_on_Italic_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Code" to="." method="_on_Code_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Underline" to="." method="_on_Underline_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Strikethrough" to="." method="_on_Strikethrough_pressed"]
-[connection signal="color_changed" from="Margin/Rows/Chat/Style/Color" to="." method="_on_Color_color_changed"]
-[connection signal="popup_closed" from="Margin/Rows/Chat/Style/Color" to="." method="_on_Color_popup_closed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Wave" to="." method="_on_Wave_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Tornado" to="." method="_on_Tornado_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Shake" to="." method="_on_Shake_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Fade" to="." method="_on_Fade_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/Style/Rainbow" to="." method="_on_Rainbow_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Bold" to="." method="_on_Bold_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Italic" to="." method="_on_Italic_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Code" to="." method="_on_Code_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Underline" to="." method="_on_Underline_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Strikethrough" to="." method="_on_Strikethrough_pressed"]
+[connection signal="color_changed" from="Margin/Rows/Chat/Styles/Color" to="." method="_on_Color_color_changed"]
+[connection signal="popup_closed" from="Margin/Rows/Chat/Styles/Color" to="." method="_on_Color_popup_closed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Wave" to="." method="_on_Wave_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Tornado" to="." method="_on_Tornado_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Shake" to="." method="_on_Shake_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Fade" to="." method="_on_Fade_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Styles/Rainbow" to="." method="_on_Rainbow_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Objects/URL" to="." method="_on_URL_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Objects/Pulse" to="." method="_on_Pulse_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Join" to="." method="_on_Join_pressed"]

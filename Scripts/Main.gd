@@ -68,6 +68,9 @@ func _on_Send_pressed() -> void:
 		if "[code]" in message_field.text:
 			message_field.text = message_field.text.replace("[code]", "[bgcolor=#c8c8c8][code]")
 			message_field.text = message_field.text.replace("[/code]", "[/code][/bgcolor]")
+		if "[url]" in message_field.text:
+			message_field.text = message_field.text.replace("[url]", "[color=#65b900][url]")
+			message_field.text = message_field.text.replace("[/url]", "[/url][/color]")
 	_message_rpc.rpc(username, message_field.text)
 	message_field.text = ""
 
@@ -186,3 +189,25 @@ func _on_Rainbow_pressed() -> void:
 		selected_text = ""
 	else:
 		message_field.text += "[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0][/rainbow]"
+
+
+func _on_URL_pressed() -> void:
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[url]%s[/url]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[url][/url]"
+
+
+func _on_Pulse_pressed() -> void:
+	if has_selected_text == true:
+		message_field.text = _bbcode_formatter("[pulse freq=1.0 color=#ffffff40 ease=-2.0]%s[/pulse]" % get_selected_text())
+		has_selected_text = false
+		selected_text = ""
+	else:
+		message_field.text += "[pulse freq=1.0 color=#ffffff40 ease=-2.0][/pulse]"
+
+
+func _on_Chatbox_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)
