@@ -3,7 +3,7 @@ class_name MainClient extends Panel
 @onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
 @onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
 
-@onready var client: RichTextLabel = %Chatbox
+@onready var client: HBoxContainer = %Client
 @onready var host: Button = %Host
 @onready var join: Button = %Join
 @onready var send: Button = %Send
