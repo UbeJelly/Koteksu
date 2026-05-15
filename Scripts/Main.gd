@@ -13,6 +13,7 @@ class_name MainClient extends Panel
 @onready var chatbox: RichTextLabel = %Chatbox
 @onready var imgboard: PopupPanel = %ImgBoard
 @onready var imggrid: GridContainer = %Grid
+@onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
 
 var username: String = ""
 var address: String = ""
@@ -62,11 +63,11 @@ func _on_peer_connected(id: int) -> void:
 
 
 @rpc("any_peer", "call_local", "unreliable") func _message_rpc(_username: String = "", _text: String = "") -> void:
-	chatbox.text += "\n[b]%s:[/b] %s" % [_username, _text]
+	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
 
 @rpc("any_peer", "call_local", "unreliable") func _notify(_username: String = "") -> void:
-	chatbox.text += "\n[color=gray]%s joined the chat[/color]" % _username
+	chatbox.text += "[color=gray]%s joined the chat[/color]\n" % _username
 
 
 func _on_Host_pressed() -> void:
@@ -237,3 +238,14 @@ func _on_Image_pressed() -> void:
 	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
 	window_size = DisplayServer.window_get_size(get_window().get_window_id())
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		for textlabel in bbcoded:
+			if not textlabel.name == "Chatbox":
+				textlabel.process_mode = Node.PROCESS_MODE_DISABLED
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		for textlabel in bbcoded:
+			if not textlabel.name == "Chatbox":
+				textlabel.process_mode = Node.PROCESS_MODE_INHERIT
