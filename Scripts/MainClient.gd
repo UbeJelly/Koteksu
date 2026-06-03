@@ -14,8 +14,9 @@ var has_selected_text: bool = false
 var selected_text: String = "": get = get_selected_text, set = set_selected_text
 
 var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
-var img_save: String = main_path+"/ImgList"
-var img_path: String = main_path+"/img"
+var img_save: String = main_path+"/ImgList"					## Where the save file of images are located. 
+var img_path: String = main_path+"/img"						## Where images are saved and loaded from.
+var img_res: String = "res://Resources/Data/Thumbnails/"	## Where resource paths are valid for [img].
 var images: PackedStringArray = []
 var imgboard_resizing: bool = false
 
@@ -49,44 +50,44 @@ func _init_directory(path: String = "") -> void:
 ## Checks for a directory and the images it contains.
 ## [param path] is the directory path to check and load images from.
 func check_images(path: String = "") -> void:
+	if not imggrid.get_children() == null:
+		for i in imggrid.get_children():
+			i.queue_free()
+
 	var directory := DirAccess.open(path)
 	if not directory == null:
-		# First list all images from directory into an array.
-		# Then compare the save file and images' contents.
-		# If they're different then overwrite the save file
-		# before loading the images.
 		images = directory.get_files()
-		
 		if FileAccess.open(img_save, FileAccess.READ) == null:
 			save_images(images)
 		else:
-			if images == load_images(img_save):
-				pass
-			else:
-				if not imggrid.get_children() == null:
-					for i in imggrid.get_children():
-						i.queue_free()
+			if not images == load_images(img_save):
 				save_images(images)
 				images = load_images(img_save)
+			else:
+				for img_file in load_images(img_save):
+					if print_image_files == true:
+						print(img_file)
 
-		for img_file in load_images(img_save):
-			if print_image_files == true:
-				print(img_file)
+					var image = Image.load_from_file(img_path+"/"+img_file)
+					var texture = ImageTexture.create_from_image(image)
+					var thumbnail := TextureButton.new()
 
-			var image = Image.load_from_file(img_path+"/"+img_file)
-			var texture = ImageTexture.create_from_image(image)
-			var thumbnail := TextureButton.new()
+					# Save images as resource to load by valid resource paths
+					var texture_res_path: String = "user://%s.res" % img_file
+					ResourceSaver.save(texture, texture_res_path)
 
-			# Bind method & args to pressed signal
-			thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture))
+					# Bind _on_Thumbnail_pressed & its args to TextureButton.pressed signal
+					thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture_res_path))
 
-			thumbnail.texture_normal = texture
-			thumbnail.name = img_file
-			thumbnail.ignore_texture_size = true
-			thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
-			thumbnail.custom_minimum_size = thumbnail_min_size
-			thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-			imggrid.add_child(thumbnail, true)
+					thumbnail.texture_normal = texture
+					thumbnail.name = img_file
+					thumbnail.ignore_texture_size = true
+					thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
+					thumbnail.custom_minimum_size = thumbnail_min_size
+					thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+					imggrid.add_child(thumbnail, true)
+				if print_image_files == true:
+					print("")
 
 
 ## Saves an array of images into a file.
@@ -307,9 +308,9 @@ func _on_Image_pressed() -> void:
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
 
 
-func _on_Thumbnail_pressed(texture: ImageTexture) -> void:
-	chatbox.append_text("[b]%s:[/b] " % username)
-	chatbox.add_image(texture, 120, 120, Color.WHITE, INLINE_ALIGNMENT_CENTER)
+func _on_Thumbnail_pressed(texture_path: String) -> void:
+	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x) }
+	_message_rpc.rpc(username, "[img={width}]{path}[/img]".format(data))
 
 
 func _notification(what: int) -> void:
