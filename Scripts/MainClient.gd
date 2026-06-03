@@ -77,6 +77,9 @@ func check_images(path: String = "") -> void:
 			var texture = ImageTexture.create_from_image(image)
 			var thumbnail := TextureButton.new()
 
+			# Bind method & args to pressed signal
+			thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture))
+
 			thumbnail.texture_normal = texture
 			thumbnail.name = img_file
 			thumbnail.ignore_texture_size = true
@@ -123,11 +126,13 @@ func _on_peer_connected(id: int) -> void:
 	_notify.rpc_id(id, username)
 
 
-@rpc("any_peer", "call_local", "unreliable") func _message_rpc(_username: String = "", _text: String = "") -> void:
+@rpc("any_peer", "call_local", "unreliable")
+func _message_rpc(_username: String = "", _text: String = "") -> void:
 	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
 
-@rpc("any_peer", "call_local", "unreliable") func _notify(_username: String = "") -> void:
+@rpc("any_peer", "call_local", "unreliable")
+func _notify(_username: String = "") -> void:
 	chatbox.text += "[color=gray]%s joined the chat[/color]\n" % _username
 
 
@@ -300,6 +305,11 @@ func _on_Image_pressed() -> void:
 	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
 	window_size = DisplayServer.window_get_size(get_window().get_window_id())
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
+
+
+func _on_Thumbnail_pressed(texture: ImageTexture) -> void:
+	chatbox.append_text("[b]%s:[/b] " % username)
+	chatbox.add_image(texture, 120, 120, Color.WHITE, INLINE_ALIGNMENT_CENTER)
 
 
 func _notification(what: int) -> void:
