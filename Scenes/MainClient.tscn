@@ -1,32 +1,31 @@
 [gd_scene format=3 uid="uid://cnrqb8xbljcih"]
 
-[ext_resource type="Script" uid="uid://q547xhmgyo8k" path="res://Scripts/Main.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bba6aa1q503sk" path="res://Resources/Font/Ubuntu/Ubuntu-Regular.ttf" id="2"]
-[ext_resource type="FontFile" uid="uid://bceeigicgw1ej" path="res://Resources/Font/Ubuntu/Ubuntu-Bold.ttf" id="3"]
-[ext_resource type="FontFile" uid="uid://ht6u8dbd72qf" path="res://Resources/Font/Ubuntu/Ubuntu-Italic.ttf" id="4"]
-[ext_resource type="Texture2D" uid="uid://dm3ysy2hpe7ti" path="res://Resources/Textures/Icon/fill_color_24.png" id="5"]
-[ext_resource type="FontFile" uid="uid://imva135cpqd7" path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" id="6"]
-[ext_resource type="Script" uid="uid://dkqu26eksdht4" path="res://Scripts/Message.gd" id="7"]
-[ext_resource type="Theme" uid="uid://b4g8jr74l3m7s" path="res://Resources/GDResources/Themes/Default.tres" id="8"]
-[ext_resource type="Texture2D" uid="uid://iqcywcwxauw6" path="res://Resources/Textures/Icon/link_24.png" id="9_vy5pj"]
-[ext_resource type="Texture2D" uid="uid://jjea3pcwyevl" path="res://Resources/Textures/Icon/image_24.png" id="10_bmxlf"]
-[ext_resource type="Texture2D" uid="uid://botespg6luk6" path="res://Resources/Textures/Icon/konata_mlg.png" id="11_4kpch"]
-[ext_resource type="Script" uid="uid://cb4i4t5sx43c3" path="res://Scripts/Grid.gd" id="11_grg3l"]
+[ext_resource type="Theme" uid="uid://b4g8jr74l3m7s" path="res://Resources/GDResources/Themes/Default.tres" id="1_y2ui2"]
+[ext_resource type="Script" uid="uid://q547xhmgyo8k" path="res://Scripts/MainClient.gd" id="2_hoby2"]
+[ext_resource type="Script" uid="uid://dkqu26eksdht4" path="res://Scripts/Message.gd" id="3_dl4qa"]
+[ext_resource type="FontFile" uid="uid://bceeigicgw1ej" path="res://Resources/Font/Ubuntu/Ubuntu-Bold.ttf" id="4_p7rhd"]
+[ext_resource type="FontFile" uid="uid://ht6u8dbd72qf" path="res://Resources/Font/Ubuntu/Ubuntu-Italic.ttf" id="5_iom6y"]
+[ext_resource type="FontFile" uid="uid://imva135cpqd7" path="res://Resources/Font/Noto_Sans_Mono/NotoSansMono-Regular.ttf" id="6_kto3r"]
+[ext_resource type="FontFile" uid="uid://bba6aa1q503sk" path="res://Resources/Font/Ubuntu/Ubuntu-Regular.ttf" id="7_mt2u8"]
+[ext_resource type="Texture2D" uid="uid://dm3ysy2hpe7ti" path="res://Resources/Textures/Icon/fill_color_24.png" id="8_bbh3v"]
+[ext_resource type="Texture2D" uid="uid://iqcywcwxauw6" path="res://Resources/Textures/Icon/link_24.png" id="9_kbvrc"]
+[ext_resource type="Texture2D" uid="uid://jjea3pcwyevl" path="res://Resources/Textures/Icon/image_24.png" id="10_lj50f"]
+[ext_resource type="Script" uid="uid://cb4i4t5sx43c3" path="res://Scripts/Grid.gd" id="11_ykchn"]
 
 [sub_resource type="FontVariation" id="FontVariation_50glp"]
-base_font = ExtResource("3")
+base_font = ExtResource("4_p7rhd")
 
 [sub_resource type="FontVariation" id="FontVariation_vy5pj"]
-base_font = ExtResource("4")
+base_font = ExtResource("5_iom6y")
 
 [sub_resource type="FontVariation" id="FontVariation_bmxlf"]
-base_font = ExtResource("6")
+base_font = ExtResource("6_kto3r")
 
 [sub_resource type="FontVariation" id="FontVariation_4kpch"]
-base_font = ExtResource("2")
+base_font = ExtResource("7_mt2u8")
 
 [sub_resource type="FontVariation" id="FontVariation_grg3l"]
-base_font = ExtResource("2")
+base_font = ExtResource("7_mt2u8")
 spacing_glyph = -12
 spacing_space = -1
 
@@ -44,12 +43,12 @@ spacing_top = -4
 
 [sub_resource type="StyleBoxEmpty" id="10"]
 
-[node name="Main" type="Panel" unique_id=1889466723]
+[node name="MainClient" type="Panel" unique_id=1889466723]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("8")
-script = ExtResource("1")
+theme = ExtResource("1_y2ui2")
+script = ExtResource("2_hoby2")
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1916566274]
 layout_mode = 0
@@ -84,7 +83,7 @@ size_flags_horizontal = 3
 placeholder_text = "Message"
 caret_blink = true
 caret_blink_interval = 0.5
-script = ExtResource("7")
+script = ExtResource("3_dl4qa")
 
 [node name="Send" type="Button" parent="Margin/Rows/Chat/User" unique_id=921866936]
 unique_name_in_owner = true
@@ -146,7 +145,7 @@ offset_top = 1.0
 offset_right = 28.0
 offset_bottom = 25.0
 mouse_filter = 2
-texture = ExtResource("5")
+texture = ExtResource("8_bbh3v")
 metadata/_edit_lock_ = true
 
 [node name="Wave" type="Button" parent="Margin/Rows/Chat/Styles" unique_id=744095729]
@@ -301,7 +300,7 @@ offset_top = 1.0
 offset_right = 28.0
 offset_bottom = 25.0
 mouse_filter = 2
-texture = ExtResource("9_vy5pj")
+texture = ExtResource("9_kbvrc")
 metadata/_edit_lock_ = true
 
 [node name="Pulse" type="Button" parent="Margin/Rows/Chat/Objects" unique_id=609558429]
@@ -344,7 +343,7 @@ offset_top = 1.0
 offset_right = 28.0
 offset_bottom = 25.0
 mouse_filter = 2
-texture = ExtResource("10_bmxlf")
+texture = ExtResource("10_lj50f")
 metadata/_edit_lock_ = true
 
 [node name="Client" type="HBoxContainer" parent="Margin/Rows" unique_id=12301996]
@@ -406,127 +405,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 480)
 layout_mode = 2
 columns = 2
-script = ExtResource("11_grg3l")
-
-[node name="Sample0" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=14242968]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample1" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=898340509]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample2" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1393920493]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample3" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1571966390]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample4" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=923507910]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample5" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=822449339]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample6" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1196940154]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample7" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1653307004]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample8" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=554648506]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample9" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=951561177]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample10" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1293788573]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample11" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=84833800]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample12" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=2111586086]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample13" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1303955434]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="Sample14" type="TextureButton" parent="ImgBoard/Scroll/Grid" unique_id=1920596064]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_4kpch")
-ignore_texture_size = true
-stretch_mode = 6
+script = ExtResource("11_ykchn")
 
 [connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]

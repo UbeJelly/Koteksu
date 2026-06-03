@@ -1,8 +1,31 @@
 class_name MainClient extends Panel
 
+@export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
+@export var print_image_files := true						## Prints the loaded image files.
+
+var username: String = ""
+var address: String = ""
+var message: String = ""
+
+var message_field_focus: bool = false
+var color_picker_value: String = ""
+
+var has_selected_text: bool = false
+var selected_text: String = "": get = get_selected_text, set = set_selected_text
+
+var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
+var img_save: String = main_path+"/ImgList"
+var img_path: String = main_path+"/img"
+var images: PackedStringArray = []
+var imgboard_resizing: bool = false
+
+var scroll_v_size: int = 20
+
+## INFO: Popup window 'ImgBoard'
 @onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
 @onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
 
+## INFO: Sub nodes
 @onready var client: HBoxContainer = %Client
 @onready var host: Button = %Host
 @onready var join: Button = %Join
@@ -15,30 +38,68 @@ class_name MainClient extends Panel
 @onready var imggrid: GridContainer = %Grid
 @onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
 
-var username: String = ""
-var address: String = ""
-var message: String = ""
 
-var message_field_focus: bool = false
-var color_picker_value: String = ""
-
-var has_selected_text: bool = false
-var selected_text: String = "": get = get_selected_text, set = set_selected_text
-
-var img_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu/img"
-var images: Array = []
-var imgboard_resizing: bool = false
-
-var scroll_v_size: int = 20
-
-
+## Initializes the directory for images.
+## [param path] is the directory path to save and load images from.
 func _init_directory(path: String = "") -> void:
 	if not DirAccess.dir_exists_absolute(path):
 		DirAccess.make_dir_absolute(path)
 
 
+## Checks for a directory and the images it contains.
+## [param path] is the directory path to check and load images from.
 func check_images(path: String = "") -> void:
-	DirAccess.open(path)
+	var directory := DirAccess.open(path)
+	if not directory == null:
+		# First list all images from directory into an array.
+		# Then compare the save file and images' contents.
+		# If they're different then overwrite the save file
+		# before loading the images.
+		images = directory.get_files()
+		
+		if FileAccess.open(img_save, FileAccess.READ) == null:
+			save_images(images)
+		else:
+			if images == load_images(img_save):
+				pass
+			else:
+				if not imggrid.get_children() == null:
+					for i in imggrid.get_children():
+						i.queue_free()
+				save_images(images)
+				images = load_images(img_save)
+
+		for img_file in load_images(img_save):
+			if print_image_files == true:
+				print(img_file)
+
+			var image = Image.load_from_file(img_path+"/"+img_file)
+			var texture = ImageTexture.create_from_image(image)
+			var thumbnail := TextureButton.new()
+
+			thumbnail.texture_normal = texture
+			thumbnail.name = img_file
+			thumbnail.ignore_texture_size = true
+			thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
+			thumbnail.custom_minimum_size = thumbnail_min_size
+			thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			imggrid.add_child(thumbnail, true)
+
+
+## Saves an array of images into a file.
+## [param image_array] is an array of image paths.
+func save_images(image_array: PackedStringArray) -> void:
+	var file := FileAccess.open(img_save, FileAccess.WRITE)
+	file.store_var(image_array, true)
+	file.close()
+
+
+## Loads a save file of images array.
+## [param save_file] is the path of the file to load the image array from.
+func load_images(save_file: String) -> PackedStringArray:
+	var file := FileAccess.open(save_file, FileAccess.READ)
+	var loaded_array = file.get_var(true)
+	return loaded_array
 
 
 func _ready() -> void:
@@ -235,6 +296,7 @@ func _on_Pulse_pressed() -> void:
 
 
 func _on_Image_pressed() -> void:
+	check_images(img_path)
 	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
 	window_size = DisplayServer.window_get_size(get_window().get_window_id())
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
