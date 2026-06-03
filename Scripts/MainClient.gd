@@ -1,14 +1,7 @@
 class_name MainClient extends Panel
 
-
-@onready var client: HBoxContainer = $"Margin/Rows/Client"
-@onready var host: Button = $"Margin/Rows/Client/Host"
-@onready var join: Button = $"Margin/Rows/Client/Join"
-@onready var send: Button = $"Margin/Rows/Chat/User/Send"
-@onready var username_field: LineEdit = $"Margin/Rows/Client/Username"
-@onready var address_field: LineEdit = $"Margin/Rows/Client/Address"
-@onready var message_field: LineEdit = $"Margin/Rows/Chat/User/Message"
-@onready var chatbox: RichTextLabel = $"Margin/Rows/Chat/Chatbox"
+@export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
+@export var print_image_files := true						## Prints the loaded image files.
 
 var username: String = ""
 var address: String = ""
@@ -20,8 +13,97 @@ var color_picker_value: String = ""
 var has_selected_text: bool = false
 var selected_text: String = "": get = get_selected_text, set = set_selected_text
 
+var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
+var img_save: String = main_path+"/ImgList"
+var img_path: String = main_path+"/img"
+var images: PackedStringArray = []
+var imgboard_resizing: bool = false
+
+var scroll_v_size: int = 20
+
+## INFO: Popup window 'ImgBoard'
+@onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
+@onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
+
+## INFO: Sub nodes
+@onready var client: HBoxContainer = %Client
+@onready var host: Button = %Host
+@onready var join: Button = %Join
+@onready var send: Button = %Send
+@onready var username_field: LineEdit = %Username
+@onready var address_field: LineEdit = %Address
+@onready var message_field: LineEdit = %Message
+@onready var chatbox: RichTextLabel = %Chatbox
+@onready var imgboard: PopupPanel = %ImgBoard
+@onready var imggrid: GridContainer = %Grid
+@onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
+
+
+## Initializes the directory for images.
+## [param path] is the directory path to save and load images from.
+func _init_directory(path: String = "") -> void:
+	if not DirAccess.dir_exists_absolute(path):
+		DirAccess.make_dir_absolute(path)
+
+
+## Checks for a directory and the images it contains.
+## [param path] is the directory path to check and load images from.
+func check_images(path: String = "") -> void:
+	var directory := DirAccess.open(path)
+	if not directory == null:
+		# First list all images from directory into an array.
+		# Then compare the save file and images' contents.
+		# If they're different then overwrite the save file
+		# before loading the images.
+		images = directory.get_files()
+		
+		if FileAccess.open(img_save, FileAccess.READ) == null:
+			save_images(images)
+		else:
+			if images == load_images(img_save):
+				pass
+			else:
+				if not imggrid.get_children() == null:
+					for i in imggrid.get_children():
+						i.queue_free()
+				save_images(images)
+				images = load_images(img_save)
+
+		for img_file in load_images(img_save):
+			if print_image_files == true:
+				print(img_file)
+
+			var image = Image.load_from_file(img_path+"/"+img_file)
+			var texture = ImageTexture.create_from_image(image)
+			var thumbnail := TextureButton.new()
+
+			thumbnail.texture_normal = texture
+			thumbnail.name = img_file
+			thumbnail.ignore_texture_size = true
+			thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
+			thumbnail.custom_minimum_size = thumbnail_min_size
+			thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			imggrid.add_child(thumbnail, true)
+
+
+## Saves an array of images into a file.
+## [param image_array] is an array of image paths.
+func save_images(image_array: PackedStringArray) -> void:
+	var file := FileAccess.open(img_save, FileAccess.WRITE)
+	file.store_var(image_array, true)
+	file.close()
+
+
+## Loads a save file of images array.
+## [param save_file] is the path of the file to load the image array from.
+func load_images(save_file: String) -> PackedStringArray:
+	var file := FileAccess.open(save_file, FileAccess.READ)
+	var loaded_array = file.get_var(true)
+	return loaded_array
+
 
 func _ready() -> void:
+	_init_directory(img_path)
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
@@ -42,11 +124,11 @@ func _on_peer_connected(id: int) -> void:
 
 
 @rpc("any_peer", "call_local", "unreliable") func _message_rpc(_username: String = "", _text: String = "") -> void:
-	chatbox.text += "\n[b]%s:[/b] %s" % [_username, _text]
+	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
 
 @rpc("any_peer", "call_local", "unreliable") func _notify(_username: String = "") -> void:
-	chatbox.text += "\n[color=gray]%s joined the chat[/color]" % _username
+	chatbox.text += "[color=gray]%s joined the chat[/color]\n" % _username
 
 
 func _on_Host_pressed() -> void:
@@ -200,6 +282,10 @@ func _on_URL_pressed() -> void:
 		message_field.text += "[url][/url]"
 
 
+func _on_Chatbox_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)
+
+
 func _on_Pulse_pressed() -> void:
 	if has_selected_text == true:
 		message_field.text = _bbcode_formatter("[pulse freq=1.0 color=#ffffff40 ease=-2.0]%s[/pulse]" % get_selected_text())
@@ -209,5 +295,19 @@ func _on_Pulse_pressed() -> void:
 		message_field.text += "[pulse freq=1.0 color=#ffffff40 ease=-2.0][/pulse]"
 
 
-func _on_Chatbox_meta_clicked(meta: Variant) -> void:
-	OS.shell_open(meta)
+func _on_Image_pressed() -> void:
+	check_images(img_path)
+	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
+	window_size = DisplayServer.window_get_size(get_window().get_window_id())
+	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		for textlabel in bbcoded:
+			if not textlabel.name == "Chatbox":
+				textlabel.process_mode = Node.PROCESS_MODE_DISABLED
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		for textlabel in bbcoded:
+			if not textlabel.name == "Chatbox":
+				textlabel.process_mode = Node.PROCESS_MODE_INHERIT

@@ -13,10 +13,11 @@ config_version=5
 config/name="Koteksu"
 config/description="Basic RPC chat with BBCode support via Godot!"
 config/version="1.3.0"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/MainClient.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6")
 boot_splash/bg_color=Color(0.705882, 0.705882, 0.705882, 0)
+boot_splash/stretch_mode=0
 boot_splash/image="res://Resources/Textures/Icon/konata_mlg.png"
 config/icon="res://Resources/Textures/Icon/konata_mlg.png"
 config/windows_native_icon="res://Resources/Textures/Icon/icon.ico"
@@ -28,6 +29,10 @@ window/size/viewport_height=480
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
+
+[global_group]
+
+BBCoded="Richtextlabels' group"
 
 [gui]
 
