@@ -7,8 +7,6 @@
 
 I wonder what a random chatbox Konata would make on her free time? Mayhaps this kind of thing.
 
-https://github.com/user-attachments/assets/1db4a07d-ef0d-4d79-aa9a-09827e810cba
-
 <p align="center">
     <img src=".github/Screenshots/host_and_clients_preview.png" alt="A screenshot where 3 instances of Koteksu are opened and are sharing images. Each client has their text notification of joining or hosting a server.">
 </p>

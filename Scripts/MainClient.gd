@@ -20,7 +20,6 @@ var selected_text: String = "": get = get_selected_text, set = set_selected_text
 var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
 var img_save: String = main_path+"/ImgList"					## Where the save file of images are located. 
 var img_path: String = main_path+"/img"						## Where images are saved and loaded from.
-var img_res: String = "res://Resources/Data/Thumbnails/"	## Where resource paths are valid for [img].
 var images: PackedStringArray = []
 var imgboard_resizing: bool = false
 
@@ -87,9 +86,12 @@ func check_images(path: String = "") -> void:
 				save_images(images)
 				images = load_images(img_save)
 			else:
+				if print_image_files == true:
+					print("Loading images at %s ..." % img_path)
+	
 				for img_file in load_images(img_save):
 					if print_image_files == true:
-						print(img_file)
+						print("✓ %s" % img_file)
 
 					var image = Image.load_from_file(img_path+"/"+img_file)
 					var texture = ImageTexture.create_from_image(image)
@@ -111,7 +113,7 @@ func check_images(path: String = "") -> void:
 					imggrid.add_child(thumbnail, true)
 
 				if print_image_files == true:
-					print("")
+					print("Loading images completed!\n")
 
 
 ## Saves an array of images into a file.
@@ -163,7 +165,7 @@ func _message_rpc(_username: String = "", _text: String = "") -> void:
 ## [param type] is the type whether they 'hosted' or 'joined'.
 @rpc("any_peer", "call_local", "unreliable")
 func _notify(_username: String = "", _address: String = "", _role: int = role) -> void:
-	var text = "[color=gray]%s %s the chat at %s[/color]\n"
+	var text = "[color=gray][b]%s[/b] %s the chat at %s[/color]\n"
 	match _role:
 		Role.HOST: chatbox.text += text % [_username, "hosted", _address]
 		Role.CLIENT: chatbox.text += text % [_username, "joined", _address]
