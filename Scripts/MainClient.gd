@@ -1,11 +1,15 @@
 class_name MainClient extends Panel
 
+enum Role { HOST, CLIENT }
+
 @export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
 @export var print_image_files := true						## Prints the loaded image files.
 
+var role: int = Role.CLIENT
 var username: String = ""
 var address: String = ""
 var message: String = ""
+var id: int = 0
 
 var message_field_focus: bool = false
 var color_picker_value: String = ""
@@ -38,6 +42,25 @@ var scroll_v_size: int = 20
 @onready var imgboard: PopupPanel = %ImgBoard
 @onready var imggrid: GridContainer = %Grid
 @onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
+
+
+func _ready() -> void:
+	address = get_local_ip()
+	address_field.text = address
+	_init_directory(img_path)
+	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
+	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
+
+
+## Returns the local ip address of the machine.
+func get_local_ip() -> String:
+	var ip: String = ""
+	for _address in IP.get_local_addresses():
+		if "." in _address and not _address.begins_with("127.") and not _address.begins_with("169.254."):
+			if _address.begins_with("192.168.") or _address.begins_with("10.") or (_address.begins_with("172.") and int(_address.split(".")[1]) >= 16 and int(_address.split(".")[1]) <= 31):
+				ip = _address
+				break
+	return ip
 
 
 ## Initializes the directory for images.
@@ -86,6 +109,7 @@ func check_images(path: String = "") -> void:
 					thumbnail.custom_minimum_size = thumbnail_min_size
 					thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 					imggrid.add_child(thumbnail, true)
+
 				if print_image_files == true:
 					print("")
 
@@ -106,25 +130,23 @@ func load_images(save_file: String) -> PackedStringArray:
 	return loaded_array
 
 
-func _ready() -> void:
-	_init_directory(img_path)
-	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
-	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
-
-
-func _joined() -> void:
+func _joined(_role: int) -> void:
 	client.hide()
 	username = username_field.text
 	address = address_field.text
-	_notify.rpc_id(multiplayer.get_unique_id(), username)
+	match _role:
+		Role.HOST:
+			_notify.rpc_id(multiplayer.get_unique_id(), username, address, Role.HOST)
+		Role.CLIENT:
+			_notify.rpc_id(id, username, address, Role.CLIENT)
 
 
 func _on_connected() -> void:
-	_joined()
+	_joined(Role.CLIENT)
 
 
-func _on_peer_connected(id: int) -> void:
-	_notify.rpc_id(id, username)
+func _on_peer_connected(_id: int) -> void:
+	id = _id
 
 
 @rpc("any_peer", "call_local", "unreliable")
@@ -132,23 +154,34 @@ func _message_rpc(_username: String = "", _text: String = "") -> void:
 	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
 
+## TODO: Make a clear distinction between the host and client,
+## then base the @rpc options from their mentioned roles.
+
+## The notification at chatbox when someone hosts or joins.
+## [param _username] is the username of the user.
+## [param _address] is the IP address of the user.
+## [param type] is the type whether they 'hosted' or 'joined'.
 @rpc("any_peer", "call_local", "unreliable")
-func _notify(_username: String = "") -> void:
-	chatbox.text += "[color=gray]%s joined the chat[/color]\n" % _username
+func _notify(_username: String = "", _address: String = "", _role: int = role) -> void:
+	var text = "[color=gray]%s %s the chat at %s[/color]\n"
+	match _role:
+		Role.HOST: chatbox.text += text % [_username, "hosted", _address]
+		Role.CLIENT: chatbox.text += text % [_username, "joined", _address]
 
 
 func _on_Host_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_server(1029, 2)
+	peer.set_bind_ip(address)
+	peer.create_server(55555, 32)
 	multiplayer.set_multiplayer_peer(peer)
-	_joined()
+	_joined(Role.HOST)
 
 
 func _on_Join_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_client(address_field.text, 1029)
+	peer.create_client(address_field.text, 55555)
 	multiplayer.set_multiplayer_peer(peer)
-	_joined()
+	_joined(Role.CLIENT)
 
 
 func _on_Send_pressed() -> void:
@@ -310,7 +343,7 @@ func _on_Image_pressed() -> void:
 
 func _on_Thumbnail_pressed(texture_path: String) -> void:
 	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x) }
-	_message_rpc.rpc(username, "[img={width}]{path}[/img]".format(data))
+	_message_rpc.rpc(username, "[img={width}]{path}[/img]\n".format(data))
 
 
 func _notification(what: int) -> void:

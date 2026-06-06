@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Koteksu"
-config/description="Basic RPC chat with BBCode support via Godot!"
-config/version="1.4.0"
+config/description="A simple richtext chat board made with Godot."
+config/version="1.4.2"
 run/main_scene="res://Scenes/MainClient.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Koteksu"
