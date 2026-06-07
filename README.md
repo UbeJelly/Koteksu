@@ -8,11 +8,11 @@
 I wonder what a random chatbox Konata would make on her free time? Mayhaps this kind of thing.
 
 <p align="center">
-    <img src=".github/Screenshots/host_and_clients_preview.png" alt="A screenshot where 3 instances of Koteksu are opened and are sharing images. Each client has their text notification of joining or hosting a server.">
+    <img src=".github/Screenshots/client_preview.png" alt="An image of chatboard consisting of text in bold, italic, code, underline, strikethrough, purple, shake, and rainbow richtext effects.">
 </p>
 
 <p align="center">
-    <img src=".github/Screenshots/client_preview.png" alt="An image of chatboard consisting of text in bold, italic, code, underline, strikethrough, purple, shake, and rainbow richtext effects.">
+    <img src=".github/Screenshots/host_and_clients_preview.png" alt="A screenshot where 3 instances of Koteksu are opened and are sharing images. Each client has their text notification of joining or hosting a server.">
 </p>
 
 ## Usage
@@ -25,7 +25,8 @@ I wonder what a random chatbox Konata would make on her free time? Mayhaps this 
 ## Features
 - BBCode support: `bold` `italic` `code` `underline` `strikethrough` `color` `wave` `tornado` `shake` `fade` `rainbow` `url` `pulse`
     - For more info: https://docs.godotengine.org/en/latest/tutorials/ui/bbcode_in_richtextlabel.html
-- Images
+- Images and drag-n-drop support for following formats:
+    - `png` `jpg` `jpeg` `webp` `svg` `bmp` `dds` `ktx` `exr` `hdr` `tga`
 - Now on Godot 4.x! For Godot 3.6 visit [this branch](https://github.com/UbeJelly/Koteksu/tree/Godot_3.6)
     - More features for RichTextLabel's BBCode, subwindows, etc.
 - Upon press, BBCode now automatically wraps around and applies to the selected text!

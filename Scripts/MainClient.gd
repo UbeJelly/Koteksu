@@ -23,6 +23,8 @@ var img_path: String = main_path+"/img"						## Where images are saved and loade
 var images: PackedStringArray = []
 var imgboard_resizing: bool = false
 
+var supported_formats: PackedStringArray = ["png", "jpg", "jpeg", "webp", "svg", "bmp", "dds", "ktx", "exr", "hdr", "tga"]
+
 var scroll_v_size: int = 20
 
 ## INFO: Popup window 'ImgBoard'
@@ -47,6 +49,7 @@ func _ready() -> void:
 	address = get_local_ip()
 	address_field.text = address
 	_init_directory(img_path)
+	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
@@ -132,6 +135,16 @@ func load_images(save_file: String) -> PackedStringArray:
 	return loaded_array
 
 
+## Called when files are dropped on the window.
+func _on_files_dropped(files_paths: PackedStringArray) -> void:
+	for path in files_paths:
+		var file: String = path.get_file()
+		var directory := DirAccess.open(img_path)
+
+		if not directory == null and file.get_extension().to_lower() in supported_formats:
+			DirAccess.copy_absolute(path, img_path+"/"+file)
+
+
 func _joined(_role: int) -> void:
 	client.hide()
 	username = username_field.text
@@ -155,9 +168,6 @@ func _on_peer_connected(_id: int) -> void:
 func _message_rpc(_username: String = "", _text: String = "") -> void:
 	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
-
-## TODO: Make a clear distinction between the host and client,
-## then base the @rpc options from their mentioned roles.
 
 ## The notification at chatbox when someone hosts or joins.
 ## [param _username] is the username of the user.
