@@ -17,7 +17,6 @@ var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
 var img_save: String = main_path+"/ImgList"
 var img_path: String = main_path+"/img"
 var images: PackedStringArray = []
-var imgboard_resizing: bool = false
 
 var scroll_v_size: int = 20
 
@@ -25,20 +24,59 @@ var scroll_v_size: int = 20
 @onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
 @onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
 
-## INFO: Sub nodes
+## INFO: Login nodes
 @onready var client: HBoxContainer = %Client
 @onready var host: Button = %Host
 @onready var join: Button = %Join
-@onready var send: Button = %Send
 @onready var username_field: LineEdit = %Username
 @onready var address_field: LineEdit = %Address
+
+## INFO: Chat nodes
 @onready var message_field: LineEdit = %Message
+@onready var send: Button = %Send
 @onready var chatbox: RichTextLabel = %Chatbox
+
+## INFO: Popup windows
 @onready var imgboard: PopupPanel = %ImgBoard
 @onready var imggrid: GridContainer = %Grid
+@onready var emojiboard: PopupPanel = %EmojiBoard
+
+## INFO: Groups
 @onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
+@onready var emojis: Array = get_tree().get_nodes_in_group("Emojis")
+@onready var tabs: Array = get_tree().get_nodes_in_group("Tabs")
 
 
+<<<<<<< Updated upstream
+=======
+func _ready() -> void:
+	address = get_local_ip()
+	address_field.text = address
+	_init_directory(img_path)
+
+	# Connect signals
+	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
+	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
+	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
+	for emoji in emojis:
+		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
+
+	for tab in tabs:
+		var tabbar: TabBar = tab.get_tab_bar()
+		tabbar.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
+
+## Returns the local ip address of the machine.
+func get_local_ip() -> String:
+	var ip: String = ""
+	for _address in IP.get_local_addresses():
+		if "." in _address and not _address.begins_with("127.") and not _address.begins_with("169.254."):
+			if _address.begins_with("192.168.") or _address.begins_with("10.") or (_address.begins_with("172.") and int(_address.split(".")[1]) >= 16 and int(_address.split(".")[1]) <= 31):
+				ip = _address
+				break
+	return ip
+
+
+>>>>>>> Stashed changes
 ## Initializes the directory for images.
 ## [param path] is the directory path to save and load images from.
 func _init_directory(path: String = "") -> void:
@@ -302,6 +340,25 @@ func _on_Image_pressed() -> void:
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
 
 
+<<<<<<< Updated upstream
+=======
+func _on_Thumbnail_pressed(texture_path: String) -> void:
+	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x) }
+	_message_rpc.rpc(username, "[img={width}]{path}[/img]\n".format(data))
+
+
+func _on_Emoji_pressed() -> void:
+	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
+	window_size = DisplayServer.window_get_size(get_window().get_window_id())
+	emojiboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
+
+
+## TODO: Add the rest of the emojis
+func _on_Emoji_btn_pressed(emoji: String) -> void:
+	message_field.text += emoji
+
+
+>>>>>>> Stashed changes
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
 		for textlabel in bbcoded:

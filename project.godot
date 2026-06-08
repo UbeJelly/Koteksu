@@ -26,6 +26,7 @@ config/windows_native_icon="res://Resources/Textures/Icon/icon.ico"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/transparent=true
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true
@@ -33,6 +34,8 @@ window/per_pixel_transparency/enabled=true
 [global_group]
 
 BBCoded="Richtextlabels' group"
+Emojis="Buttons for pasting emojis"
+Tabs="Tab windows and alike"
 
 [gui]
 
@@ -54,4 +57,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.705882, 0.705882, 0.705882, 0)
+viewport/transparent_background=true
 environment/defaults/default_environment="res://default_env.tres"

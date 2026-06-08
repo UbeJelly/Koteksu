@@ -43,6 +43,10 @@ spacing_top = -4
 
 [sub_resource type="StyleBoxEmpty" id="10"]
 
+[sub_resource type="FontVariation" id="FontVariation_y2ui2"]
+base_font = ExtResource("4_p7rhd")
+spacing_top = 3
+
 [node name="MainClient" type="Panel" unique_id=1889466723]
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,6 +350,13 @@ mouse_filter = 2
 texture = ExtResource("10_lj50f")
 metadata/_edit_lock_ = true
 
+[node name="Emoji" type="Button" parent="Margin/Rows/Chat/Objects" unique_id=430473036]
+custom_minimum_size = Vector2(32, 27)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = SubResource("FontVariation_y2ui2")
+text = "😎"
+
 [node name="Client" type="HBoxContainer" parent="Margin/Rows" unique_id=12301996]
 unique_name_in_owner = true
 layout_mode = 2
@@ -386,7 +397,7 @@ disable_3d = true
 physics_object_picking = true
 oversampling_override = 1.0
 title = "Images"
-position = Vector2i(0, 36)
+position = Vector2i(-340, 36)
 size = Vector2i(340, 488)
 wrap_controls = false
 unresizable = false
@@ -407,6 +418,317 @@ layout_mode = 2
 columns = 2
 script = ExtResource("11_ykchn")
 
+[node name="EmojiBoard" type="PopupPanel" parent="." unique_id=1191036443]
+unique_name_in_owner = true
+disable_3d = true
+oversampling_override = 1.0
+title = "Emoji"
+position = Vector2i(597, 36)
+size = Vector2i(340, 340)
+wrap_controls = false
+unresizable = false
+borderless = false
+
+[node name="Category" type="TabContainer" parent="EmojiBoard" unique_id=1978788076 groups=["Tabs"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+tab_0/title = " :D "
+tab_1/title = " (˶>⩊<˶) "
+
+[node name="Emojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=1316914170 groups=["Tabs"]]
+layout_mode = 2
+current_tab = 0
+tab_0/title = " 🤣 "
+metadata/_tab_index = 0
+metadata/_tab_name = " :D "
+
+[node name="Scroll" type="ScrollContainer" parent="EmojiBoard/Category/Emojis" unique_id=1444839883]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+metadata/_tab_name = " 🤣 "
+
+[node name="Grid" type="GridContainer" parent="EmojiBoard/Category/Emojis/Scroll" unique_id=501128100]
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="😀" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1377045862 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😀"
+
+[node name="😁" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=553571401 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😁"
+
+[node name="😂" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1133285717 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😂"
+
+[node name="🤣" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=471424373 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤣"
+
+[node name="😃" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1803004791 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😃"
+
+[node name="😄" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1338143291 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😄"
+
+[node name="😅" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1549694479 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😅"
+
+[node name="😆" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1077891648 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😆"
+
+[node name="😉" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=531223081 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😉"
+
+[node name="😊" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1698274192 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😊"
+
+[node name="😋" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=183813137 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😋"
+
+[node name="😎" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=2100351022 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😎"
+
+[node name="😍" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1573516703 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😍"
+
+[node name="😘" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=668144047 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😘"
+
+[node name="🥰" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=2122527885 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🥰"
+
+[node name="😗" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1349700137 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😗"
+
+[node name="😙" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1659545984 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😙"
+
+[node name="😚" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=318834353 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😚"
+
+[node name="☺" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1596718385 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "☺"
+
+[node name="🙂" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=366751172 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙂"
+
+[node name="🤗" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=960180737 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤗"
+
+[node name="🤩" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1575609635 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤩"
+
+[node name="🤔" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=725314695 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤔"
+
+[node name="🤨" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1770426118 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤨"
+
+[node name="😐" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=173215720 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😐"
+
+[node name="😑" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1962354690 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😑"
+
+[node name="😶" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1402893070 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😶"
+
+[node name="🙄" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1092747049 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙄"
+
+[node name="😏" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=574538692 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😏"
+
+[node name="😣" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1464150248 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😣"
+
+[node name="😥" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1825303991 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😥"
+
+[node name="😮" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1697462456 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😮"
+
+[node name="🤐" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=535906001 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤐"
+
+[node name="😯" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1583588992 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😯"
+
+[node name="😪" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=754498931 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😪"
+
+[node name="😫" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1481619256 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😫"
+
+[node name="🥱" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=620871967 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🥱"
+
+[node name="😴" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1418665716 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😴"
+
+[node name="😌" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1432037032 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😌"
+
+[node name="😛" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/Grid" unique_id=1269800362 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😛"
+
+[node name="Kaomojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=750745408 groups=["Tabs"]]
+visible = false
+layout_mode = 2
+current_tab = 0
+tab_0/title = " 🤣 "
+metadata/_tab_index = 1
+metadata/_tab_name = " (˶>⩊<˶) "
+
+[node name="Scroll" type="ScrollContainer" parent="EmojiBoard/Category/Kaomojis" unique_id=1749242950]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+metadata/_tab_name = " 🤣 "
+
+[node name="Grid" type="GridContainer" parent="EmojiBoard/Category/Kaomojis/Scroll" unique_id=1256552624]
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="😀" type="Button" parent="EmojiBoard/Category/Kaomojis/Scroll/Grid" unique_id=2114924300 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "😀"
+
 [connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Styles/Bold" to="." method="_on_Bold_pressed"]
@@ -424,6 +746,7 @@ script = ExtResource("11_ykchn")
 [connection signal="pressed" from="Margin/Rows/Chat/Objects/URL" to="." method="_on_URL_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Objects/Pulse" to="." method="_on_Pulse_pressed"]
 [connection signal="pressed" from="Margin/Rows/Chat/Objects/Image" to="." method="_on_Image_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Objects/Emoji" to="." method="_on_Emoji_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Join" to="." method="_on_Join_pressed"]
 [connection signal="size_changed" from="ImgBoard" to="ImgBoard/Scroll/Grid" method="_on_ImgBoard_size_changed"]
