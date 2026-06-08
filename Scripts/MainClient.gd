@@ -47,8 +47,6 @@ var scroll_v_size: int = 20
 @onready var tabs: Array = get_tree().get_nodes_in_group("Tabs")
 
 
-<<<<<<< Updated upstream
-=======
 func _ready() -> void:
 	address = get_local_ip()
 	address_field.text = address
@@ -76,7 +74,6 @@ func get_local_ip() -> String:
 	return ip
 
 
->>>>>>> Stashed changes
 ## Initializes the directory for images.
 ## [param path] is the directory path to save and load images from.
 func _init_directory(path: String = "") -> void:
@@ -138,12 +135,6 @@ func load_images(save_file: String) -> PackedStringArray:
 	var file := FileAccess.open(save_file, FileAccess.READ)
 	var loaded_array = file.get_var(true)
 	return loaded_array
-
-
-func _ready() -> void:
-	_init_directory(img_path)
-	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
-	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
 
 func _joined() -> void:
@@ -340,8 +331,6 @@ func _on_Image_pressed() -> void:
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
 
 
-<<<<<<< Updated upstream
-=======
 func _on_Thumbnail_pressed(texture_path: String) -> void:
 	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x) }
 	_message_rpc.rpc(username, "[img={width}]{path}[/img]\n".format(data))
@@ -358,7 +347,6 @@ func _on_Emoji_btn_pressed(emoji: String) -> void:
 	message_field.text += emoji
 
 
->>>>>>> Stashed changes
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
 		for textlabel in bbcoded:
