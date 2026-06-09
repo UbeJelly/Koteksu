@@ -1,11 +1,16 @@
 class_name MainClient extends Panel
 
+enum Role { HOST, CLIENT }
+
 @export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
 @export var print_image_files := true						## Prints the loaded image files.
+@export var print_tabbar_names := true						## Prints the TabBar names from TabContainers
 
+var role: int = Role.CLIENT
 var username: String = ""
 var address: String = ""
 var message: String = ""
+var id: int = 0
 
 var message_field_focus: bool = false
 var color_picker_value: String = ""
@@ -17,6 +22,8 @@ var main_path: String = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+"/Koteksu"
 var img_save: String = main_path+"/ImgList"
 var img_path: String = main_path+"/img"
 var images: PackedStringArray = []
+
+var supported_formats: PackedStringArray = ["png", "jpg", "jpeg", "webp", "svg", "bmp", "dds", "ktx", "exr", "hdr", "tga"]
 
 var scroll_v_size: int = 20
 
@@ -59,9 +66,28 @@ func _ready() -> void:
 	for emoji in emojis:
 		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
 
+	if OS.is_debug_build() and print_tabbar_names == true:
+		print("TabContainers and TabBars")
+
 	for tab in tabs:
 		var tabbar: TabBar = tab.get_tab_bar()
 		tabbar.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
+
+		if OS.is_debug_build() and print_tabbar_names == true:
+			print(tabbar.get_parent().name+": "+tabbar.name)
+
+		match tabbar.get_parent().name:
+			"Category":
+				tabbar.set_tab_tooltip(0, "Emoji")
+				tabbar.set_tab_tooltip(1, "Kaomoji")
+			"Emojis":
+				tabbar.set_tab_tooltip(0, "Smiley faces and animals")
+			"Kaomoji":
+				tabbar.set_tab_tooltip(0, "Kaomojis")
+
+	if OS.is_debug_build() and print_tabbar_names == true:
+		print("")
+
 
 ## Returns the local ip address of the machine.
 func get_local_ip() -> String:
@@ -84,41 +110,48 @@ func _init_directory(path: String = "") -> void:
 ## Checks for a directory and the images it contains.
 ## [param path] is the directory path to check and load images from.
 func check_images(path: String = "") -> void:
+	if not imggrid.get_children() == null:
+		for i in imggrid.get_children():
+			i.queue_free()
+
 	var directory := DirAccess.open(path)
 	if not directory == null:
-		# First list all images from directory into an array.
-		# Then compare the save file and images' contents.
-		# If they're different then overwrite the save file
-		# before loading the images.
 		images = directory.get_files()
-		
 		if FileAccess.open(img_save, FileAccess.READ) == null:
 			save_images(images)
 		else:
-			if images == load_images(img_save):
-				pass
-			else:
-				if not imggrid.get_children() == null:
-					for i in imggrid.get_children():
-						i.queue_free()
+			if not images == load_images(img_save):
 				save_images(images)
 				images = load_images(img_save)
+			else:
+				if OS.is_debug_build() and print_image_files == true:
+					print("Loading images at %s ..." % img_path)
 
-		for img_file in load_images(img_save):
-			if print_image_files == true:
-				print(img_file)
+				for img_file in load_images(img_save):
+					if print_image_files == true:
+						print("✓ %s" % img_file)
 
-			var image = Image.load_from_file(img_path+"/"+img_file)
-			var texture = ImageTexture.create_from_image(image)
-			var thumbnail := TextureButton.new()
+					var image = Image.load_from_file(img_path+"/"+img_file)
+					var texture = ImageTexture.create_from_image(image)
+					var thumbnail := TextureButton.new()
 
-			thumbnail.texture_normal = texture
-			thumbnail.name = img_file
-			thumbnail.ignore_texture_size = true
-			thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
-			thumbnail.custom_minimum_size = thumbnail_min_size
-			thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-			imggrid.add_child(thumbnail, true)
+					# Save images as resource to load by valid resource paths
+					var texture_res_path: String = "user://%s.res" % img_file
+					ResourceSaver.save(texture, texture_res_path)
+
+					# Bind _on_Thumbnail_pressed & its args to TextureButton.pressed signal
+					thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture_res_path))
+
+					thumbnail.texture_normal = texture
+					thumbnail.name = img_file
+					thumbnail.ignore_texture_size = true
+					thumbnail.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_COVERED
+					thumbnail.custom_minimum_size = thumbnail_min_size
+					thumbnail.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+					imggrid.add_child(thumbnail, true)
+
+				if OS.is_debug_build() and print_image_files == true:
+					print("Loading images completed!\n")
 
 
 ## Saves an array of images into a file.
@@ -137,41 +170,65 @@ func load_images(save_file: String) -> PackedStringArray:
 	return loaded_array
 
 
-func _joined() -> void:
+## Called when files are dropped on the window.
+func _on_files_dropped(files_paths: PackedStringArray) -> void:
+	for path in files_paths:
+		var file: String = path.get_file()
+		var directory := DirAccess.open(img_path)
+
+		if not directory == null and file.get_extension().to_lower() in supported_formats:
+			DirAccess.copy_absolute(path, img_path+"/"+file)
+
+
+func _joined(_role: int) -> void:
 	client.hide()
 	username = username_field.text
 	address = address_field.text
-	_notify.rpc_id(multiplayer.get_unique_id(), username)
+	match _role:
+		Role.HOST:
+			_notify.rpc_id(multiplayer.get_unique_id(), username, address, Role.HOST)
+		Role.CLIENT:
+			_notify.rpc_id(id, username, address, Role.CLIENT)
 
 
 func _on_connected() -> void:
-	_joined()
+	_joined(Role.CLIENT)
 
 
-func _on_peer_connected(id: int) -> void:
-	_notify.rpc_id(id, username)
+func _on_peer_connected(_id: int) -> void:
+	id = _id
 
 
-@rpc("any_peer", "call_local", "unreliable") func _message_rpc(_username: String = "", _text: String = "") -> void:
+@rpc("any_peer", "call_local", "unreliable")
+func _message_rpc(_username: String = "", _text: String = "") -> void:
 	chatbox.text += "[b]%s:[/b] %s\n" % [_username, _text]
 
 
-@rpc("any_peer", "call_local", "unreliable") func _notify(_username: String = "") -> void:
-	chatbox.text += "[color=gray]%s joined the chat[/color]\n" % _username
+## The notification at chatbox when someone hosts or joins.
+## [param _username] is the username of the user.
+## [param _address] is the IP address of the user.
+## [param type] is the type whether they 'hosted' or 'joined'.
+@rpc("any_peer", "call_local", "unreliable")
+func _notify(_username: String = "", _address: String = "", _role: int = role) -> void:
+	var text = "[color=gray][b]%s[/b] %s the chat at %s[/color]\n"
+	match _role:
+		Role.HOST: chatbox.text += text % [_username, "hosted", _address]
+		Role.CLIENT: chatbox.text += text % [_username, "joined", _address]
 
 
 func _on_Host_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_server(1029, 2)
+	peer.set_bind_ip(address)
+	peer.create_server(55555, 32)
 	multiplayer.set_multiplayer_peer(peer)
-	_joined()
+	_joined(Role.HOST)
 
 
 func _on_Join_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_client(address_field.text, 1029)
+	peer.create_client(address_field.text, 55555)
 	multiplayer.set_multiplayer_peer(peer)
-	_joined()
+	_joined(Role.CLIENT)
 
 
 func _on_Send_pressed() -> void:

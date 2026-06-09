@@ -47,6 +47,10 @@ spacing_top = -4
 base_font = ExtResource("4_p7rhd")
 spacing_top = 3
 
+[sub_resource type="FontVariation" id="FontVariation_hoby2"]
+base_font = ExtResource("7_mt2u8")
+spacing_top = 6
+
 [node name="MainClient" type="Panel" unique_id=1889466723]
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,7 +184,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -207,7 +210,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -234,7 +236,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -261,7 +262,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -289,7 +289,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -335,7 +334,6 @@ shortcut_keys_enabled = false
 justification_flags = 0
 meta_underlined = false
 hint_underlined = false
-threaded = true
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
@@ -450,7 +448,9 @@ tab_1/title = " (˶>⩊<˶) "
 
 [node name="Emojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=1316914170 groups=["Tabs"]]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_hoby2")
 current_tab = 0
+tabs_position = 1
 tab_0/title = " 🤣 "
 metadata/_tab_index = 0
 metadata/_tab_name = " :D "
@@ -526,30 +526,35 @@ text = "😆"
 [node name="😉" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/HFlow" unique_id=531223081 groups=["Emojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "winking face"
 mouse_default_cursor_shape = 2
 text = "😉"
 
 [node name="😊" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/HFlow" unique_id=1698274192 groups=["Emojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "smiling face with smiling eyes"
 mouse_default_cursor_shape = 2
 text = "😊"
 
 [node name="😋" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/HFlow" unique_id=183813137 groups=["Emojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "face savoring food"
 mouse_default_cursor_shape = 2
 text = "😋"
 
 [node name="😎" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/HFlow" unique_id=2100351022 groups=["Emojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "smiling face with sunglasses"
 mouse_default_cursor_shape = 2
 text = "😎"
 
 [node name="😍" type="Button" parent="EmojiBoard/Category/Emojis/Scroll/HFlow" unique_id=1573516703 groups=["Emojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+tooltip_text = "smiling face with heart-eyes"
 mouse_default_cursor_shape = 2
 text = "😍"
 
