@@ -343,6 +343,7 @@ func _on_Emoji_pressed() -> void:
 
 
 ## TODO: Add the rest of the emojis
+## TODO: Add their description on tooltips/hints
 func _on_Emoji_btn_pressed(emoji: String) -> void:
 	message_field.text += emoji
 
