@@ -1,8 +1,11 @@
 class_name MainClient extends Panel
 
+#region Variables
 enum Role { HOST, CLIENT }
 
 @export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
+@export var hover_tabbar := false							## If TabBars are 'hoverable' and tween animated
+@export_category("Terminal")
 @export var print_image_files := true						## Prints the loaded image files.
 @export var print_tabbar_names := true						## Prints the TabBar names from TabContainers
 
@@ -25,9 +28,9 @@ var images: PackedStringArray = []
 
 var supported_formats: PackedStringArray = ["png", "jpg", "jpeg", "webp", "svg", "bmp", "dds", "ktx", "exr", "hdr", "tga"]
 
-var scroll_v_size: int = 20
+var scroll_v_size: int = 28
 
-## INFO: Popup window 'ImgBoard'
+## INFO: Window Rect2
 @onready var window_pos: Vector2i = DisplayServer.window_get_position(get_window().get_window_id())
 @onready var window_size: Vector2i = DisplayServer.window_get_size(get_window().get_window_id())
 
@@ -45,14 +48,14 @@ var scroll_v_size: int = 20
 
 ## INFO: Popup windows
 @onready var imgboard: PopupPanel = %ImgBoard
-@onready var imggrid: GridContainer = %Grid
+@onready var imggrid: HFlowContainer = %HFlow
 @onready var emojiboard: PopupPanel = %EmojiBoard
 
 ## INFO: Groups
 @onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
 @onready var emojis: Array = get_tree().get_nodes_in_group("Emojis")
 @onready var tabs: Array = get_tree().get_nodes_in_group("Tabs")
-
+#endregion
 
 func _ready() -> void:
 	address = get_local_ip()
@@ -63,8 +66,12 @@ func _ready() -> void:
 	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
+
 	for emoji in emojis:
+		emoji.pivot_offset = Vector2(20.0, 20.0) # To transform scale from center
 		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
+		emoji.mouse_entered.connect(_on_Emoji_btn_hovered.bind(emoji))
+		emoji.mouse_exited.connect(_on_Emoji_btn_unhover.bind(emoji))
 
 	if OS.is_debug_build() and print_tabbar_names == true:
 		print("TabContainers and TabBars")
@@ -73,20 +80,28 @@ func _ready() -> void:
 		var tabbar: TabBar = tab.get_tab_bar()
 		tabbar.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
 
+		if hover_tabbar == true:
+			tabbar.mouse_entered.connect(_on_TabBar_hovered.bind(tabbar))
+			tabbar.mouse_exited.connect(_on_TabBar_unhover.bind(tabbar))
+
 		if OS.is_debug_build() and print_tabbar_names == true:
 			print(tabbar.get_parent().name+": "+tabbar.name)
 
 		match tabbar.get_parent().name:
 			"Category":
-				tabbar.set_tab_tooltip(0, "Emoji")
-				tabbar.set_tab_tooltip(1, "Kaomoji")
+				_set_tabbar_tooltip(tab, tabbar)
 			"Emojis":
-				tabbar.set_tab_tooltip(0, "Smiley faces and animals")
+				_set_tabbar_tooltip(tab, tabbar)
 			"Kaomoji":
 				tabbar.set_tab_tooltip(0, "Kaomojis")
 
 	if OS.is_debug_build() and print_tabbar_names == true:
 		print("")
+
+
+func _set_tabbar_tooltip(tab: TabContainer, tabbar: TabBar) -> void:
+	for t in tab.get_child_count():
+		tabbar.set_tab_tooltip(t, tab.get_child(t).name)
 
 
 ## Returns the local ip address of the machine.
@@ -141,6 +156,10 @@ func check_images(path: String = "") -> void:
 
 					# Bind _on_Thumbnail_pressed & its args to TextureButton.pressed signal
 					thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture_res_path))
+
+					# For adding effects when hovering/unhovered
+					thumbnail.mouse_entered.connect(_on_Thumbnail_hovered.bind(thumbnail))
+					thumbnail.mouse_exited.connect(_on_Thumbnail_unhover.bind(thumbnail))
 
 					thumbnail.texture_normal = texture
 					thumbnail.name = img_file
@@ -393,6 +412,18 @@ func _on_Thumbnail_pressed(texture_path: String) -> void:
 	_message_rpc.rpc(username, "[img={width}]{path}[/img]\n".format(data))
 
 
+func _on_Thumbnail_hovered(button: TextureButton) -> void:
+	button.z_index = 1
+	var tween: Tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.15, 1.15), 0.05)
+
+
+func _on_Thumbnail_unhover(button: TextureButton) -> void:
+	button.z_index = 0
+	var tween: Tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.05)
+
+
 func _on_Emoji_pressed() -> void:
 	window_pos = DisplayServer.window_get_position(get_window().get_window_id())
 	window_size = DisplayServer.window_get_size(get_window().get_window_id())
@@ -403,6 +434,30 @@ func _on_Emoji_pressed() -> void:
 ## TODO: Add their description on tooltips/hints
 func _on_Emoji_btn_pressed(emoji: String) -> void:
 	message_field.text += emoji
+
+
+func _on_Emoji_btn_hovered(button: Button) -> void:
+	button.z_index = 1
+	var tween: Tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.25, 1.25), 0.05)
+
+
+func _on_Emoji_btn_unhover(button: Button) -> void:
+	button.z_index = 0
+	var tween: Tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.05)
+
+
+func _on_TabBar_hovered(tab: TabBar) -> void:
+	tab.z_index = 1
+	var tween: Tween = create_tween()
+	tween.tween_property(tab, "scale", Vector2(1.25, 1.25), 0.05)
+
+
+func _on_TabBar_unhover(tab: TabBar) -> void:
+	tab.z_index = 0
+	var tween: Tween = create_tween()
+	tween.tween_property(tab, "scale", Vector2(1.0, 1.0), 0.05)
 
 
 func _notification(what: int) -> void:
