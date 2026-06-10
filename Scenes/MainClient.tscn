@@ -62,6 +62,10 @@ multichannel_signed_distance_field = true
 base_font = SubResource("SystemFont_hoby2")
 spacing_top = 11
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fggfn"]
+content_margin_left = 2.0
+content_margin_top = 5.0
+
 [node name="MainClient" type="Panel" unique_id=1889466723]
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,57 +116,54 @@ size_flags_horizontal = 0
 mouse_default_cursor_shape = 2
 text = "Send"
 
-[node name="HFlow" type="HFlowContainer" parent="Margin/Rows/Chat" unique_id=1317845715]
+[node name="Options" type="HFlowContainer" parent="Margin/Rows/Chat" unique_id=1317845715]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 
-[node name="Styles" type="HBoxContainer" parent="Margin/Rows/Chat/HFlow" unique_id=1907818460]
-layout_mode = 2
-
-[node name="Bold" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=998798223]
+[node name="Bold" type="Button" parent="Margin/Rows/Chat/Options" unique_id=998798223]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_50glp")
 text = "B"
 
-[node name="Italic" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=18735423]
+[node name="Italic" type="Button" parent="Margin/Rows/Chat/Options" unique_id=18735423]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_vy5pj")
 text = "I"
 
-[node name="Code" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=639207210]
+[node name="Code" type="Button" parent="Margin/Rows/Chat/Options" unique_id=639207210]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_bmxlf")
 text = "<>"
 
-[node name="Underline" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=696730872]
+[node name="Underline" type="Button" parent="Margin/Rows/Chat/Options" unique_id=696730872]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_4kpch")
 text = "U̲"
 
-[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=1288884257]
+[node name="Strikethrough" type="Button" parent="Margin/Rows/Chat/Options" unique_id=1288884257]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_grg3l")
 text = " S—"
 
-[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=1536334709]
+[node name="Color" type="ColorPickerButton" parent="Margin/Rows/Chat/Options" unique_id=1536334709]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/HFlow/Styles/Color" unique_id=88329653]
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Options/Color" unique_id=88329653]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
@@ -172,12 +173,12 @@ mouse_filter = 2
 texture = ExtResource("8_bbh3v")
 metadata/_edit_lock_ = true
 
-[node name="Wave" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=744095729]
+[node name="Wave" type="Button" parent="Margin/Rows/Chat/Options" unique_id=744095729]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Styles/Wave" unique_id=1690226577 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Wave" unique_id=1690226577 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 12.0
@@ -198,12 +199,12 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Tornado" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=126337946]
+[node name="Tornado" type="Button" parent="Margin/Rows/Chat/Options" unique_id=126337946]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Styles/Tornado" unique_id=1942064563 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Tornado" unique_id=1942064563 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 10.0
@@ -224,12 +225,12 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Shake" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=757035048]
+[node name="Shake" type="Button" parent="Margin/Rows/Chat/Options" unique_id=757035048]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Styles/Shake" unique_id=1218136499 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Shake" unique_id=1218136499 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 12.0
@@ -250,12 +251,12 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Fade" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=969116880]
+[node name="Fade" type="Button" parent="Margin/Rows/Chat/Options" unique_id=969116880]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Styles/Fade" unique_id=1049306529 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Fade" unique_id=1049306529 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 14.0
@@ -276,12 +277,12 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/HFlow/Styles" unique_id=1302304183]
+[node name="Rainbow" type="Button" parent="Margin/Rows/Chat/Options" unique_id=1302304183]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Styles/Rainbow" unique_id=458524478 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Rainbow" unique_id=458524478 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 8.0
@@ -303,16 +304,13 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Objects" type="HBoxContainer" parent="Margin/Rows/Chat/HFlow" unique_id=386153234]
-layout_mode = 2
-
-[node name="URL" type="Button" parent="Margin/Rows/Chat/HFlow/Objects" unique_id=892133317]
+[node name="URL" type="Button" parent="Margin/Rows/Chat/Options" unique_id=892133317]
 custom_minimum_size = Vector2(32, 27)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_50glp")
 
-[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/HFlow/Objects/URL" unique_id=1166182262]
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Options/URL" unique_id=1166182262]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
@@ -322,12 +320,12 @@ mouse_filter = 2
 texture = ExtResource("9_kbvrc")
 metadata/_edit_lock_ = true
 
-[node name="Pulse" type="Button" parent="Margin/Rows/Chat/HFlow/Objects" unique_id=609558429]
+[node name="Pulse" type="Button" parent="Margin/Rows/Chat/Options" unique_id=609558429]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/HFlow/Objects/Pulse" unique_id=215660809 groups=["BBCoded"]]
+[node name="Label" type="RichTextLabel" parent="Margin/Rows/Chat/Options/Pulse" unique_id=215660809 groups=["BBCoded"]]
 clip_contents = false
 layout_mode = 0
 offset_left = 12.0
@@ -348,13 +346,13 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Image" type="Button" parent="Margin/Rows/Chat/HFlow/Objects" unique_id=1243027767]
+[node name="Image" type="Button" parent="Margin/Rows/Chat/Options" unique_id=1243027767]
 custom_minimum_size = Vector2(32, 27)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("FontVariation_50glp")
 
-[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/HFlow/Objects/Image" unique_id=1577297088]
+[node name="Icon" type="TextureRect" parent="Margin/Rows/Chat/Options/Image" unique_id=1577297088]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
@@ -364,7 +362,7 @@ mouse_filter = 2
 texture = ExtResource("10_lj50f")
 metadata/_edit_lock_ = true
 
-[node name="Emoji" type="Button" parent="Margin/Rows/Chat/HFlow/Objects" unique_id=430473036]
+[node name="Emoji" type="Button" parent="Margin/Rows/Chat/Options" unique_id=430473036]
 custom_minimum_size = Vector2(32, 27)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -464,14 +462,17 @@ tab_1/title = " (˶>⩊<˶)"
 layout_mode = 2
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_p7rhd")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fggfn")
 current_tab = 0
 tabs_position = 1
 tab_0/title = " 😀 "
 tab_1/title = " 🐭 "
+tab_2/title = " 🎅 "
 metadata/_tab_index = 0
 metadata/_tab_name = " 🙂 "
 
 [node name="Faces" type="ScrollContainer" parent="EmojiBoard/Category/Emojis" unique_id=1444839883]
+editor_description = "Contains 'Faces' emojis only i.e. 'People' aren't included, only main ones.  Example: 😀 😎 🤣 😍 😈 👽 🤖 💩"
 layout_mode = 2
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
@@ -1144,6 +1145,7 @@ mouse_default_cursor_shape = 2
 text = "💩"
 
 [node name="Animals" type="ScrollContainer" parent="EmojiBoard/Category/Emojis" unique_id=648337492]
+editor_description = "Contains 'Animals' emojis only. Some extinct and fictional animals are included.  Example: 😺 🦊 🐸 🐼 🦄 🐲 🦕 🦖"
 visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
@@ -1792,6 +1794,794 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "🦜"
 
+[node name="🦩" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1806632705 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦩"
+
+[node name="🦚" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1107611649 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦚"
+
+[node name="🦉" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=878135368 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦉"
+
+[node name="🐦" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1275300662 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐦"
+
+[node name="🐧" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1429577105 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐧"
+
+[node name="🐥" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1062211594 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐥"
+
+[node name="🐤" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1739695742 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐤"
+
+[node name="🐣" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=674338347 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐣"
+
+[node name="🦇" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=325219383 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦇"
+
+[node name="🦋" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=834510184 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦋"
+
+[node name="🐌" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1838999705 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐌"
+
+[node name="🐛" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1470631373 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐛"
+
+[node name="🦟" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=504602583 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦟"
+
+[node name="🦗" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=312313296 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦗"
+
+[node name="🐜" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=921470154 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐜"
+
+[node name="🐝" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1954428118 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐝"
+
+[node name="🐞" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=692953040 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🐞"
+
+[node name="🦂" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1201270975 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦂"
+
+[node name="🕷" type="Button" parent="EmojiBoard/Category/Emojis/Animals/HFlow" unique_id=1806935796 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🕷"
+
+[node name="People" type="TabContainer" parent="EmojiBoard/Category/Emojis" unique_id=703003703 groups=["Tabs"]]
+visible = false
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fggfn")
+current_tab = 0
+tab_0/title = "👍"
+tab_1/title = "👍🏻"
+tab_2/title = "👍🏼"
+tab_3/title = "👍🏽"
+tab_4/title = "👍🏾"
+tab_5/title = "👍🏿"
+metadata/_tab_index = 2
+metadata/_tab_name = " 🎅 "
+
+[node name="Base" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=212293304]
+editor_description = "Contains the yellow skin base emojis."
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+metadata/_tab_name = "👍"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/Base" unique_id=1628576001]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="👩" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=850344266 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩"
+
+[node name="👨" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1019356004 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨"
+
+[node name="🧑" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=177066324 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧑"
+
+[node name="👧" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=766724268 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👧"
+
+[node name="👦" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=739302251 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👦"
+
+[node name="🧒" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=598352218 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧒"
+
+[node name="👶" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1259791243 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👶"
+
+[node name="👵" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=269910472 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👵"
+
+[node name="👴" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=459176823 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👴"
+
+[node name="🧓" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2135814716 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧓"
+
+[node name="👩‍🦰" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1508352147 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🦰"
+
+[node name="👨‍🦰" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=530051486 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🦰"
+
+[node name="👩‍🦱" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1734974383 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🦱"
+
+[node name="👨‍🦱" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2020433825 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🦱"
+
+[node name="👩‍🦲" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2023667871 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🦲"
+
+[node name="👨‍🦲" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=965281208 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🦲"
+
+[node name="👩‍🦳" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=803868856 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🦳"
+
+[node name="👨‍🦳" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2044001164 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🦳"
+
+[node name="👱‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=646470185 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👱‍♀️"
+
+[node name="👱‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=559474241 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👱‍♂️"
+
+[node name="👸" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=937568952 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👸"
+
+[node name="🤴" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2122996032 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤴"
+
+[node name="👳‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1492476989 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👳‍♀️"
+
+[node name="👳‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1535650545 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👳‍♂️"
+
+[node name="👲" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=994146547 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👲"
+
+[node name="🧔" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1501106671 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧔"
+
+[node name="👼" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1044526218 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👼"
+
+[node name="🤶" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1467130292 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤶"
+
+[node name="🎅" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1265281701 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🎅"
+
+[node name="👮‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1039160997 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👮‍♀️"
+
+[node name="👮‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=26576218 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👮‍♂️"
+
+[node name="🕵️‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=348170803 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🕵️‍♀️"
+
+[node name="🕵️‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=295663739 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🕵️‍♂️"
+
+[node name="💂‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1743325295 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "💂‍♀️"
+
+[node name="💂‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1935028196 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "💂‍♂️"
+
+[node name="👷‍♀️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=288773965 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👷‍♀️"
+
+[node name="👷‍♂️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=216152876 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👷‍♂️"
+
+[node name="👩‍⚕️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1510098006 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍⚕️"
+
+[node name="👨‍⚕️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=816291078 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍⚕️"
+
+[node name="👩‍🎓" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1125755889 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🎓"
+
+[node name="👨‍🎓" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=868460634 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🎓"
+
+[node name="👩‍🏫" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1873504481 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🏫"
+
+[node name="👨‍🏫" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=763234978 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🏫"
+
+[node name="👩‍⚖️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=690119374 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍⚖️"
+
+[node name="👨‍⚖️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1689199164 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍⚖️"
+
+[node name="👩‍🌾" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1782407094 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🌾"
+
+[node name="👨‍🌾" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1158564766 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🌾"
+
+[node name="👩‍🍳" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=478785970 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🍳"
+
+[node name="👨‍🍳" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1286653414 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🍳"
+
+[node name="👩‍🔧" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1782503336 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🔧"
+
+[node name="👨‍🔧" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=818824602 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🔧"
+
+[node name="👩‍🏭" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2021558245 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🏭"
+
+[node name="👨‍🏭" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=832188429 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🏭"
+
+[node name="👩‍💼" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1901183027 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍💼"
+
+[node name="👨‍💼" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=39892745 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍💼"
+
+[node name="👩‍🔬" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1766750843 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🔬"
+
+[node name="👨‍🔬" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1680257155 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🔬"
+
+[node name="👩‍💻" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1551156569 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍💻"
+
+[node name="👨‍💻" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1371386572 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍💻"
+
+[node name="👩‍🎤" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=975161713 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🎤"
+
+[node name="👨‍🎤" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=740474672 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🎤"
+
+[node name="👩‍🎨" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=738208116 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🎨"
+
+[node name="👨‍🎨" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=533564291 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🎨"
+
+[node name="👩‍✈️" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1834919808 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍✈️"
+
+[node name="0" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1849943412 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍✈️"
+
+[node name="1" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2061336129 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🚀"
+
+[node name="2" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1023165630 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🚀"
+
+[node name="3" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1548436941 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👩‍🚒"
+
+[node name="4" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1363315037 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👨‍🚒"
+
+[node name="5" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=793994289 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧕"
+
+[node name="6" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1366616550 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "👰"
+
+[node name="7" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1999564030 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤵"
+
+[node name="8" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2107787061 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤱"
+
+[node name="9" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1999471657 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🤰"
+
+[node name="10" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1286684969 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦸‍♀️"
+
+[node name="11" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=744784740 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦸‍♂️"
+
+[node name="12" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1232522350 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦹‍♀️"
+
+[node name="13" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=751303183 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🦹‍♂️"
+
+[node name="14" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=522916945 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧙‍♀️"
+
+[node name="15" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2079186141 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧙‍♂️"
+
+[node name="16" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=23618217 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧚‍♀️"
+
+[node name="17" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=731313449 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧚‍♂️"
+
+[node name="18" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=705828152 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧛‍♀️"
+
+[node name="19" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1133377888 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧛‍♂️"
+
+[node name="20" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=955981120 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧜‍♀️"
+
+[node name="21" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=675540723 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧜‍♂️"
+
+[node name="22" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1567052652 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧝‍♀️"
+
+[node name="23" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=415103036 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧝‍♂️"
+
+[node name="24" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=317768923 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧟‍♀️"
+
+[node name="25" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=291894420 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🧟‍♂️"
+
+[node name="26" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=2136270199 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙍‍♀️"
+
+[node name="27" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1999175988 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙍‍♂️"
+
+[node name="28" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=776610889 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙎‍♀️"
+
+[node name="29" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=728358123 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙎‍♂️"
+
+[node name="30" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=114410084 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙅‍♀️"
+
+[node name="31" type="Button" parent="EmojiBoard/Category/Emojis/People/Base/HFlow" unique_id=1507616977 groups=["Emojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "🙅‍♂️"
+
+[node name="LightSkin" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=1446162442]
+editor_description = "Contains the light skin emojis."
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 1
+metadata/_tab_name = "👍🏻"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/LightSkin" unique_id=1005170375]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="MediumLightSkin" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=1468773262]
+editor_description = "Contains the light skin emojis."
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 2
+metadata/_tab_name = "👍🏼"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/MediumLightSkin" unique_id=2085892439]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="MediumSkin" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=726114951]
+editor_description = "Contains the light skin emojis."
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 3
+metadata/_tab_name = "👍🏽"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/MediumSkin" unique_id=1423004697]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="MediumDarkSkin" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=1804350962]
+editor_description = "Contains the light skin emojis."
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 4
+metadata/_tab_name = "👍🏾"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/MediumDarkSkin" unique_id=2060047490]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="DarkSkin" type="ScrollContainer" parent="EmojiBoard/Category/Emojis/People" unique_id=678068210]
+editor_description = "Contains the light skin emojis."
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 5
+metadata/_tab_name = "👍🏿"
+
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Emojis/People/DarkSkin" unique_id=596617860]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
 [node name="Kaomojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=750745408 groups=["Tabs"]]
 visible = false
 layout_mode = 2
@@ -1821,21 +2611,21 @@ text = "😀"
 
 [connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Bold" to="." method="_on_Bold_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Italic" to="." method="_on_Italic_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Code" to="." method="_on_Code_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Underline" to="." method="_on_Underline_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Strikethrough" to="." method="_on_Strikethrough_pressed"]
-[connection signal="color_changed" from="Margin/Rows/Chat/HFlow/Styles/Color" to="." method="_on_Color_color_changed"]
-[connection signal="popup_closed" from="Margin/Rows/Chat/HFlow/Styles/Color" to="." method="_on_Color_popup_closed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Wave" to="." method="_on_Wave_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Tornado" to="." method="_on_Tornado_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Shake" to="." method="_on_Shake_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Fade" to="." method="_on_Fade_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Styles/Rainbow" to="." method="_on_Rainbow_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Objects/URL" to="." method="_on_URL_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Objects/Pulse" to="." method="_on_Pulse_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Objects/Image" to="." method="_on_Image_pressed"]
-[connection signal="pressed" from="Margin/Rows/Chat/HFlow/Objects/Emoji" to="." method="_on_Emoji_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Bold" to="." method="_on_Bold_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Italic" to="." method="_on_Italic_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Code" to="." method="_on_Code_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Underline" to="." method="_on_Underline_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Strikethrough" to="." method="_on_Strikethrough_pressed"]
+[connection signal="color_changed" from="Margin/Rows/Chat/Options/Color" to="." method="_on_Color_color_changed"]
+[connection signal="popup_closed" from="Margin/Rows/Chat/Options/Color" to="." method="_on_Color_popup_closed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Wave" to="." method="_on_Wave_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Tornado" to="." method="_on_Tornado_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Shake" to="." method="_on_Shake_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Fade" to="." method="_on_Fade_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Rainbow" to="." method="_on_Rainbow_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/URL" to="." method="_on_URL_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Pulse" to="." method="_on_Pulse_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Image" to="." method="_on_Image_pressed"]
+[connection signal="pressed" from="Margin/Rows/Chat/Options/Emoji" to="." method="_on_Emoji_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Margin/Rows/Client/Join" to="." method="_on_Join_pressed"]
