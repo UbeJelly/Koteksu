@@ -67,41 +67,8 @@ func _ready() -> void:
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
-	for emoji in emojis:
-		emoji.pivot_offset = Vector2(20.0, 20.0) # To transform scale from center
-		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
-		emoji.mouse_entered.connect(_on_Emoji_btn_hovered.bind(emoji))
-		emoji.mouse_exited.connect(_on_Emoji_btn_unhover.bind(emoji))
-
-	if OS.is_debug_build() and print_tabbar_names == true:
-		print("TabContainers and TabBars")
-
-	for tab in tabs:
-		var tabbar: TabBar = tab.get_tab_bar()
-		tabbar.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
-
-		if hover_tabbar == true:
-			tabbar.mouse_entered.connect(_on_TabBar_hovered.bind(tabbar))
-			tabbar.mouse_exited.connect(_on_TabBar_unhover.bind(tabbar))
-
-		if OS.is_debug_build() and print_tabbar_names == true:
-			print(tabbar.get_parent().name+": "+tabbar.name)
-
-		match tabbar.get_parent().name:
-			"Category":
-				_set_tabbar_tooltip(tab, tabbar)
-			"Emojis":
-				_set_tabbar_tooltip(tab, tabbar)
-			"Kaomoji":
-				tabbar.set_tab_tooltip(0, "Kaomojis")
-
-	if OS.is_debug_build() and print_tabbar_names == true:
-		print("")
-
-
-func _set_tabbar_tooltip(tab: TabContainer, tabbar: TabBar) -> void:
-	for t in tab.get_child_count():
-		tabbar.set_tab_tooltip(t, tab.get_child(t).name)
+	_set_emojis()
+	_set_tabs()
 
 
 ## Returns the local ip address of the machine.
@@ -458,6 +425,56 @@ func _on_TabBar_unhover(tab: TabBar) -> void:
 	tab.z_index = 0
 	var tween: Tween = create_tween()
 	tween.tween_property(tab, "scale", Vector2(1.0, 1.0), 0.05)
+
+
+func _set_emojis() -> void:
+	for emoji in emojis:
+		emoji.pivot_offset = Vector2(20.0, 20.0) # To transform scale from center
+		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
+		emoji.mouse_entered.connect(_on_Emoji_btn_hovered.bind(emoji))
+		emoji.mouse_exited.connect(_on_Emoji_btn_unhover.bind(emoji))
+
+
+func _set_tabs() -> void:
+	if OS.is_debug_build() and print_tabbar_names == true:
+		print("TabContainers and TabBars")
+
+	for tab in tabs:
+		var tabbar: TabBar = tab.get_tab_bar()
+		tabbar.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
+
+		if hover_tabbar == true:
+			tabbar.mouse_entered.connect(_on_TabBar_hovered.bind(tabbar))
+			tabbar.mouse_exited.connect(_on_TabBar_unhover.bind(tabbar))
+
+		if tabbar.get_parent().name == "Category" or "Emojis" or "People" or "Kaomoji":
+			_set_tabbar_tooltip(tab, tabbar)
+
+		if OS.is_debug_build() and print_tabbar_names == true:
+			print(tabbar.get_parent().name+": "+tabbar.name)
+
+	if OS.is_debug_build() and print_tabbar_names == true:
+		print("")
+
+
+## Sets the tooltip for TabBars. This method sets the tooltip with a TabContainer name.
+## [param tab] is the TabContainer which separates nodes with tabs.
+## [param tabbar] is a TabBar node from a TabContainer which contains the tabs to click on.
+func _set_tabbar_tooltip(tab: TabContainer, tabbar: TabBar) -> void:
+	for t in tab.get_child_count():
+		var tabname: String = space_between_PascalCase(tab.get_child(t).name)
+		tabbar.set_tab_tooltip(t, tabname)
+
+
+## Returns a 'PascalCase' string into 'Pascal Case' text.
+## [param text] is the string to check PascalCase naming convention with. A an space character is added before a substring if more than 1 uppercase letter is detected. 
+func space_between_PascalCase(text: String) -> String:
+	for c in text:
+		if c.begins_with(c.capitalize()):
+			text += " " + c
+		else:
+			text += c
+	return text.trim_prefix(text.left(text.find(" "))).strip_edges()
 
 
 func _notification(what: int) -> void:
