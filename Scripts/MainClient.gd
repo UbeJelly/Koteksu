@@ -1,4 +1,4 @@
-class_name MainClient extends Panel
+@tool class_name MainClient extends Panel
 
 #region Variables
 enum Role { HOST, CLIENT }
@@ -58,14 +58,15 @@ var scroll_v_size: int = 28
 #endregion
 
 func _ready() -> void:
-	address = get_local_ip()
-	address_field.text = address
-	_init_directory(img_path)
+	if not Engine.is_editor_hint():
+		address = get_local_ip()
+		address_field.text = address
+		_init_directory(img_path)
 
-	# Connect signals
-	get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
-	multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
-	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
+		# Connect signals
+		get_window().connect("files_dropped", Callable(self, "_on_files_dropped"))
+		multiplayer.connect("connected_to_server", Callable(self, "_on_connected"))
+		multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 
 	_set_emojis()
 	_set_tabs()
@@ -415,6 +416,11 @@ func _on_Emoji_btn_unhover(button: Button) -> void:
 	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.05)
 
 
+## The Callable when an emoji node name is changed in the Editor.
+func _on_Emoji_btn_rename(button: Button) -> void:
+	button.name = button.text
+
+
 func _on_TabBar_hovered(tab: TabBar) -> void:
 	tab.z_index = 1
 	var tween: Tween = create_tween()
@@ -433,6 +439,13 @@ func _set_emojis() -> void:
 		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
 		emoji.mouse_entered.connect(_on_Emoji_btn_hovered.bind(emoji))
 		emoji.mouse_exited.connect(_on_Emoji_btn_unhover.bind(emoji))
+
+	# Automate sync of emoji text to its node name in Editor.
+	if Engine.is_editor_hint():
+		var inspector = EditorInterface.get_inspector()
+		inspector.property_edited.connect(
+			func(_property: String) -> void: _on_Emoji_btn_rename(inspector.get_edited_object())
+		)
 
 
 func _set_tabs() -> void:
