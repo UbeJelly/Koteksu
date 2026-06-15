@@ -69,6 +69,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("1_y2ui2")
 script = ExtResource("2_hoby2")
+thumbnail_min_size = Vector2(160, 160)
+set_ip_address = null
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1916566274]
 layout_mode = 0
@@ -445,8 +447,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 344.0
+offset_bottom = 416.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)

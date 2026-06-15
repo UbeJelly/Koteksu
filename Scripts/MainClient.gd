@@ -3,11 +3,15 @@
 #region Variables
 enum Role { HOST, CLIENT }
 
-@export var thumbnail_min_size := Vector2(160.0, 160.0)		## Images' min size on ImgBoard/Grid.
-@export var hover_tabbar := false							## If TabBars are 'hoverable' and tween animated
+@export var thumbnail_min_size: Vector2i = Vector2i(160, 160)	## Images' min size on ImgBoard/Grid.
+@export var hover_tabbar: bool = false							## If TabBars are 'hoverable' and tween animated.
+
+@export_category("Debug")
+@export var set_ip_address: bool = false						## Toggle set of IP address in debug. For demo purposes.
+
 @export_category("Terminal")
-@export var print_image_files := true						## Prints the loaded image files.
-@export var print_tabbar_names := true						## Prints the TabBar names from TabContainers
+@export var print_image_files: bool = true						## Prints the loaded image files.
+@export var print_tabbar_names: bool = true						## Prints the TabBar names from TabContainers.
 
 var role: int = Role.CLIENT
 var username: String = ""
@@ -60,7 +64,8 @@ var scroll_v_size: int = 28
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		address = get_local_ip()
+		if set_ip_address == true:
+			address = get_local_ip()
 		address_field.text = address
 		_init_directory(img_path)
 
