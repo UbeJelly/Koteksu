@@ -158,6 +158,7 @@ func load_images(save_file: String) -> PackedStringArray:
 
 
 ## Called when files are dropped on the window.
+## [param files_paths] is an array of file paths to drop on the window.
 func _on_files_dropped(files_paths: PackedStringArray) -> void:
 	for path in files_paths:
 		var file: String = path.get_file()
@@ -400,6 +401,14 @@ func _on_Emoji_pressed() -> void:
 
 ## TODO: Add the rest of the emojis
 ## TODO: Add their description on tooltips/hints
+##
+## TODO: Remove single emoji that's composed of 2+ emojis
+## i.e. a backspace deletes the entire emoji, not by parts
+## to do it, make a string array of emojis, and if it is
+## in it, delete the entire emoji by its string length
+##
+## Reason: So its easier for the user to edit text involving
+## these kind of emojis.
 func _on_Emoji_btn_pressed(emoji: String) -> void:
 	message_field.text += emoji
 
@@ -418,7 +427,10 @@ func _on_Emoji_btn_unhover(button: Button) -> void:
 
 ## The Callable when an emoji node name is changed in the Editor.
 func _on_Emoji_btn_rename(button: Button) -> void:
-	button.name = button.text
+	if button.text.is_empty():
+		button.name = "00"
+	else:
+		button.name = button.text
 
 
 func _on_TabBar_hovered(tab: TabBar) -> void:
