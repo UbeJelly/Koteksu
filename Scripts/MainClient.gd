@@ -55,6 +55,7 @@ var scroll_v_size: int = 28
 @onready var bbcoded: Array = get_tree().get_nodes_in_group("BBCoded")
 @onready var emojis: Array = get_tree().get_nodes_in_group("Emojis")
 @onready var tabs: Array = get_tree().get_nodes_in_group("Tabs")
+@onready var kaomojis: Array = get_tree().get_nodes_in_group("Kaomojis")
 #endregion
 
 func _ready() -> void:
@@ -448,7 +449,12 @@ func _on_TabBar_unhover(tab: TabBar) -> void:
 func _set_emojis() -> void:
 	for emoji in emojis:
 		emoji.pivot_offset = Vector2(20.0, 20.0) # To transform scale from center
-		emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
+
+		if emoji in kaomojis: # To add space, given that they have lots of characters
+			emoji.pressed.connect(_on_Emoji_btn_pressed.bind(" %s " % emoji.text))
+		else:
+			emoji.pressed.connect(_on_Emoji_btn_pressed.bind(emoji.text))
+
 		emoji.mouse_entered.connect(_on_Emoji_btn_hovered.bind(emoji))
 		emoji.mouse_exited.connect(_on_Emoji_btn_unhover.bind(emoji))
 
@@ -456,7 +462,9 @@ func _set_emojis() -> void:
 	if Engine.is_editor_hint():
 		var inspector = EditorInterface.get_inspector()
 		inspector.property_edited.connect(
-			func(_property: String) -> void: _on_Emoji_btn_rename(inspector.get_edited_object())
+			func(property: String) -> void:
+				if property == "text": # So it only cares when we edit its text
+					_on_Emoji_btn_rename(inspector.get_edited_object())
 		)
 
 
@@ -472,7 +480,7 @@ func _set_tabs() -> void:
 			tabbar.mouse_entered.connect(_on_TabBar_hovered.bind(tabbar))
 			tabbar.mouse_exited.connect(_on_TabBar_unhover.bind(tabbar))
 
-		if tabbar.get_parent().name == "Category" or "Emojis" or "People" or "Kaomoji":
+		if not tabbar.get_parent().name == "":
 			_set_tabbar_tooltip(tab, tabbar)
 
 		if OS.is_debug_build() and print_tabbar_names == true:
@@ -482,7 +490,7 @@ func _set_tabs() -> void:
 		print("")
 
 
-## Sets the tooltip for TabBars. This method sets the tooltip with a TabContainer name.
+## Sets the tooltip for TabBars. This method sets the tooltip with a TabContainer name, i.e., this method uses only its children nodes' names as tooltips for the tabs.
 ## [param tab] is the TabContainer which separates nodes with tabs.
 ## [param tabbar] is a TabBar node from a TabContainer which contains the tabs to click on.
 func _set_tabbar_tooltip(tab: TabContainer, tabbar: TabBar) -> void:

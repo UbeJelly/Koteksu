@@ -37,6 +37,7 @@ window/per_pixel_transparency/enabled=true
 BBCoded="Richtextlabels' group"
 Emojis="Buttons for pasting emojis"
 Tabs="Tab windows and alike"
+Kaomojis="For kaomojis which consists a lot of characters"
 
 [gui]
 

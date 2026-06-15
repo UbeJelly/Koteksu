@@ -22,3 +22,11 @@ func _input(event) -> void:
 				length = start - end
 				sub_string = text.substr(start, int(abs(length)))
 				main.set_selected_text(sub_string)
+
+
+func _unhandled_input(event) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			caret_column -= 10
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			caret_column += 10

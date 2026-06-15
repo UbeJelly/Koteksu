@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dm3ysy2hpe7ti" path="res://Resources/Textures/Icon/fill_color_24.png" id="8_bbh3v"]
 [ext_resource type="Texture2D" uid="uid://iqcywcwxauw6" path="res://Resources/Textures/Icon/link_24.png" id="9_kbvrc"]
 [ext_resource type="Texture2D" uid="uid://jjea3pcwyevl" path="res://Resources/Textures/Icon/image_24.png" id="10_lj50f"]
+[ext_resource type="StyleBox" uid="uid://cmxiii7saytyo" path="res://Resources/GDResources/EmojiTabs.tres" id="11_y2ui2"]
 
 [sub_resource type="FontVariation" id="FontVariation_50glp"]
 base_font = ExtResource("4_p7rhd")
@@ -61,10 +62,6 @@ multichannel_signed_distance_field = true
 [sub_resource type="FontVariation" id="FontVariation_p7rhd"]
 base_font = SubResource("SystemFont_hoby2")
 spacing_top = 11
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fggfn"]
-content_margin_left = 2.0
-content_margin_top = 5.0
 
 [node name="MainClient" type="Panel" unique_id=1889466723]
 anchors_preset = 15
@@ -448,8 +445,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 344.0
-offset_bottom = 416.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
@@ -462,7 +459,7 @@ tab_1/title = " (˶>⩊<˶)"
 layout_mode = 2
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_p7rhd")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_fggfn")
+theme_override_styles/panel = ExtResource("11_y2ui2")
 current_tab = 0
 tabs_position = 1
 tab_0/title = " 😀 "
@@ -1913,7 +1910,7 @@ editor_description = "Contains 'People' emojis only. The emojis are categorized 
 visible = false
 layout_mode = 2
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_fggfn")
+theme_override_styles/panel = ExtResource("11_y2ui2")
 current_tab = 0
 tab_0/title = "👍"
 tab_1/title = "👍🏻"
@@ -5079,29 +5076,230 @@ text = "👨🏿‍🤝‍👨🏿"
 [node name="Kaomojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=750745408 groups=["Tabs"]]
 visible = false
 layout_mode = 2
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_styles/panel = ExtResource("11_y2ui2")
 current_tab = 0
-tab_0/title = " 🤣 "
+tabs_position = 1
+tab_0/title = "ꉂ(˵˃ ᗜ ˂˵)"
 metadata/_tab_index = 1
 metadata/_tab_name = " (˶>⩊<˶)"
 
-[node name="Scroll" type="ScrollContainer" parent="EmojiBoard/Category/Kaomojis" unique_id=1749242950]
+[node name="HappyFaces" type="ScrollContainer" parent="EmojiBoard/Category/Kaomojis" unique_id=1749242950]
 layout_mode = 2
 horizontal_scroll_mode = 0
 metadata/_tab_index = 0
-metadata/_tab_name = " 🤣 "
+metadata/_tab_name = "ꉂ(˵˃ ᗜ ˂˵)"
 
-[node name="Grid" type="GridContainer" parent="EmojiBoard/Category/Kaomojis/Scroll" unique_id=1256552624]
-custom_minimum_size = Vector2(320, 300)
+[node name="HFlow" type="HFlowContainer" parent="EmojiBoard/Category/Kaomojis/HappyFaces" unique_id=765662488]
 layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 8
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+alignment = 1
 
-[node name="😀" type="Button" parent="EmojiBoard/Category/Kaomojis/Scroll/Grid" unique_id=2114924300 groups=["Emojis"]]
+[node name="(˶ᵔ ᵕ ᵔ˶)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=210525358 groups=["Emojis", "Kaomojis"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "😀"
+text = "(˶ᵔ ᵕ ᵔ˶)"
+
+[node name="◝(ᵔᗜᵔ)◜" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1993677557 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "◝(ᵔᗜᵔ)◜"
+
+[node name="₍₍⚞(˶>ᗜ<˶)⚟⁾⁾" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1257123827 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "₍₍⚞(˶>ᗜ<˶)⚟⁾⁾"
+
+[node name="(˶>⩊<˶)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=793309972 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶>⩊<˶)"
+
+[node name="(˶˃ ᵕ ˂˶) _ᐟ_ᐟ" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=16367399 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶˃ ᵕ ˂˶) .ᐟ.ᐟ"
+
+[node name="ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=228108719 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧"
+
+[node name="⸜(｡˃ ᵕ ˂ )⸝♡" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=786163871 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "⸜(｡˃ ᵕ ˂ )⸝♡"
+
+[node name="(ㅅ´ ˘ `)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=822029400 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(ㅅ´ ˘ `)"
+
+[node name="(˶ˆᗜˆ˵)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1746285752 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶ˆᗜˆ˵)"
+
+[node name="( ⸝⸝´꒳`⸝⸝)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1695965408 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "( ⸝⸝´꒳`⸝⸝)"
+
+[node name="٩(ˊᗜˋ*)و ♡" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1652402516 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "٩(ˊᗜˋ*)و ♡"
+
+[node name="⸜( ˶>ᴗ<˶)⸝♡" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1159325948 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "⸜( ˶>ᴗ<˶)⸝♡"
+
+[node name="ദ്ദി◝ ⩊ ◜_ᐟ" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=92556184 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "ദ്ദി◝ ⩊ ◜.ᐟ"
+
+[node name="(˶ᵔ ᵕ ᵔ˶) ‹𝟹" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=115433424 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶ᵔ ᵕ ᵔ˶) ‹𝟹"
+
+[node name="ꉂ(˵˃ ᗜ ˂˵)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=746642005 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "ꉂ(˵˃ ᗜ ˂˵)"
+
+[node name="٩(^ᗜ^ )و ´-" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=13133813 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "٩(^ᗜ^ )و ´-"
+
+[node name="(˶˃ ∇ ˂˶)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=580677280 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶˃ ∇ ˂˶)"
+
+[node name="(ෆ˙ᵕ˙ෆ)♡" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=15781378 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(ෆ˙ᵕ˙ෆ)♡"
+
+[node name="(__◜ᴗ◝__)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=912819844 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(..◜ᴗ◝..)"
+
+[node name="(ᵕ—ᴗ—)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=2056353971 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(ᵕ—ᴗ—)"
+
+[node name="(,,>ヮ<,,)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1888641321 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(,,>ヮ<,,)"
+
+[node name="(๑•᎑•๑)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=2060180583 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(๑•᎑•๑)"
+
+[node name="〜⁠(⁠꒪⁠꒳⁠꒪⁠)⁠〜" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1630864903 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "〜⁠(⁠꒪⁠꒳⁠꒪⁠)⁠〜"
+
+[node name="(╥﹏╥)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1530412408 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(╥﹏╥)"
+
+[node name="(˶˃ ᵕ ˂˶)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1082223272 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶˃ ᵕ ˂˶)"
+
+[node name="(♡ˊ͈ ꒳ ˋ͈)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=18468406 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(♡ˊ͈ ꒳ ˋ͈)"
+
+[node name=">ᴗ<" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1210377870 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = ">ᴗ<"
+
+[node name="(˶ᵔᗜᵔ˶)ﾉﾞ" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=486179470 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(˶ᵔᗜᵔ˶)ﾉﾞ"
+
+[node name="(๑ᵔ⤙ᵔ๑)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=385365446 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(๑ᵔ⤙ᵔ๑)"
+
+[node name="(๑>◡<๑)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=1393559091 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(๑>◡<๑)"
+
+[node name="( ∩´͈ ᐜ `͈∩)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=377507092 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "( ∩´͈ ᐜ `͈∩)"
+
+[node name="ദ്ദി ˉ͈̀꒳ˉ͈́ )✧" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=422386595 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "ദ്ദി ˉ͈̀꒳ˉ͈́ )✧"
+
+[node name="(,; ⩌ ;,)" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=585731916 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "(,; ⩌ ;,)"
+
+[node name="( ˶°ㅁ°) !!" type="Button" parent="EmojiBoard/Category/Kaomojis/HappyFaces/HFlow" unique_id=633195472 groups=["Emojis", "Kaomojis"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "( ˶°ㅁ°) !!"
 
 [connection signal="meta_clicked" from="Margin/Rows/Chat/Chatbox" to="." method="_on_Chatbox_meta_clicked"]
 [connection signal="pressed" from="Margin/Rows/Chat/User/Send" to="." method="_on_Send_pressed"]
