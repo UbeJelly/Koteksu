@@ -129,7 +129,7 @@ func check_images(path: String = "") -> void:
 					ResourceSaver.save(texture, texture_res_path)
 
 					# Bind _on_Thumbnail_pressed & its args to TextureButton.pressed signal
-					thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture_res_path))
+					thumbnail.pressed.connect(_on_Thumbnail_pressed.bind(texture_res_path, img_path+"/"+img_file))
 
 					# For adding effects when hovering/unhovered
 					thumbnail.mouse_entered.connect(_on_Thumbnail_hovered.bind(thumbnail))
@@ -382,9 +382,12 @@ func _on_Image_pressed() -> void:
 	imgboard.popup(Rect2i(Vector2(window_pos.x - ((window_size.x / 2.0) + scroll_v_size), window_pos.y), Vector2(window_size.x / 2.0 + scroll_v_size, window_size.y)))
 
 
-func _on_Thumbnail_pressed(texture_path: String) -> void:
-	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x) }
-	_message_rpc.rpc(username, "[img={width}]{path}[/img]\n".format(data))
+## TODO: Wrap around meta to the img resource so that we can set options for the static texture.
+func _on_Thumbnail_pressed(texture_path: String, file_path: String) -> void:
+	var options: Dictionary = { "name": file_path.get_file(), "file": file_path }
+	var data: Dictionary = { "path": texture_path, "width": str(thumbnail_min_size.x), "options": "underline=never tooltip='Open {name}' href={file}".format(options) }
+
+	_message_rpc.rpc(username, "[url {options}][img={width}]{path}[/img][/url]\n".format(data))
 
 
 func _on_Thumbnail_hovered(button: TextureButton) -> void:

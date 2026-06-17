@@ -90,6 +90,7 @@ size_flags_vertical = 3
 focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
+context_menu_enabled = true
 threaded = true
 selection_enabled = true
 
