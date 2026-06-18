@@ -492,7 +492,7 @@ func _set_tabs() -> void:
 			_set_tabbar_tooltip(tab, tabbar)
 
 		if OS.is_debug_build() and print_tabbar_names == true:
-			print(tabbar.get_parent().name+": "+tabbar.name)
+			print("✓ "+tabbar.get_parent().name+": "+tabbar.name)
 
 	if OS.is_debug_build() and print_tabbar_names == true:
 		print("")
