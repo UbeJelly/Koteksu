@@ -114,11 +114,11 @@ func check_images(path: String = "") -> void:
 				images = load_images(img_save)
 			else:
 				if OS.is_debug_build() and print_image_files == true:
-					print("Loading images at %s ..." % img_path)
+					print_rich("Loading images at [url underline=hover tooltip='Open directory at %s' href=%s.]%s[/url][wave]...[/wave]" % [img_path, img_path, img_path])
 
 				for img_file in load_images(img_save):
 					if print_image_files == true:
-						print("✓ %s" % img_file)
+						print_rich("[b][color=green]✓[/color][/b] [url underline=hover tooltip='Open %s file.' href=%s]%s[/url]" % [img_file, img_path+"/"+img_file, img_file])
 
 					var image = Image.load_from_file(img_path+"/"+img_file)
 					var texture = ImageTexture.create_from_image(image)
@@ -144,7 +144,7 @@ func check_images(path: String = "") -> void:
 					imggrid.add_child(thumbnail, true)
 
 				if OS.is_debug_build() and print_image_files == true:
-					print("Loading images completed!\n")
+					print_rich("[b][color=green][pulse]Loading images completed![/pulse][/color][/b]\n")
 
 
 ## Saves an array of images into a file.
@@ -492,7 +492,7 @@ func _set_tabs() -> void:
 			_set_tabbar_tooltip(tab, tabbar)
 
 		if OS.is_debug_build() and print_tabbar_names == true:
-			print("✓ "+tabbar.get_parent().name+": "+tabbar.name)
+			print_rich("[b][color=green]✓[/color][/b] "+tabbar.get_parent().name+": "+tabbar.name)
 
 	if OS.is_debug_build() and print_tabbar_names == true:
 		print("")
