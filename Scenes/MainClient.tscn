@@ -454,7 +454,7 @@ theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_dl4qa")
 current_tab = 0
 tab_0/title = " 🙂 "
-tab_1/title = " (˶>⩊<˶)"
+tab_1/title = " (˶>⩊<˶) "
 
 [node name="Emojis" type="TabContainer" parent="EmojiBoard/Category" unique_id=1316914170 groups=["Tabs"]]
 layout_mode = 2
@@ -10690,7 +10690,7 @@ current_tab = 0
 tabs_position = 1
 tab_0/title = "ꉂ(˵˃ ᗜ ˂˵)"
 metadata/_tab_index = 1
-metadata/_tab_name = " (˶>⩊<˶)"
+metadata/_tab_name = " (˶>⩊<˶) "
 
 [node name="HappyFaces" type="ScrollContainer" parent="EmojiBoard/Category/Kaomojis" unique_id=1749242950]
 layout_mode = 2
